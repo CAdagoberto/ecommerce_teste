@@ -4,6 +4,7 @@ import HeroInicio from '../components/home/heroInicio'
 import FiltrosProdutos from '../components/produtos/FiltrosProdutos'
 import GradeProdutos from '../components/produtos/GradeProdutos'
 import { filtrarEOrdenarProdutos } from '../utils/produtoCatalogo'
+import { esperarMs } from '../utils/esperarMs'
 
 const heroProdutos = {
     titulo: 'Nosso catálogo',
@@ -26,31 +27,69 @@ export default function Produtos() {
     const [ordenacao, setOrdenacao] = useState('padrao')
 
     useEffect(() => {
-        fetch('http://localhost:3000/produtos')
-            .then(res => res.json())
-            .then(dados => {
+        let aindaVale = true
+
+        let pedidoProdutos = fetch('http://localhost:3000/produtos').then(
+            function (res) {
+                if (res.ok === false) {
+                    throw new Error('erro http')
+                }
+                return res.json()
+            }
+        )
+
+        let timerFake = esperarMs(600)
+
+        Promise.all([pedidoProdutos, timerFake])
+            .then(function (resultados) {
+                let dados = resultados[0]
+                if (aindaVale === false) {
+                    return
+                }
                 setListaProdutos(dados)
                 setErroProdutos('')
             })
-            .catch((error) => {
+            .catch(function (error) {
                 console.error('Erro ao buscar produtos:', error)
+                if (aindaVale === false) {
+                    return
+                }
                 setErroProdutos(
                     'Não foi possível carregar o catálogo. Verifique o servidor.'
                 )
             })
-            .finally(() => {
-                setCarregando(false)
+            .finally(function () {
+                if (aindaVale === true) {
+                    setCarregando(false)
+                }
             })
+
+        return function () {
+            aindaVale = false
+        }
     }, [])
 
     useEffect(() => {
-        fetch('http://localhost:3000/categorias')
-            .then(res => res.json())
-            .then(dados => {
+        let pedidoCategorias = fetch('http://localhost:3000/categorias').then(
+            function (res) {
+                if (res.ok === false) {
+                    throw new Error('erro http')
+                }
+                return res.json()
+            }
+        )
+
+        let timerFake = esperarMs(400)
+
+        Promise.all([pedidoCategorias, timerFake])
+            .then(function (resultados) {
+                let dados = resultados[0]
                 setListaCategorias(dados)
                 setErroCategorias('')
             })
-            .catch(error => console.error('Erro ao buscar categorias:', error))
+            .catch(function (error) {
+                console.error('Erro ao buscar categorias:', error)
+            })
     }, [])
 
     let produtosFiltrados = filtrarEOrdenarProdutos(listaProdutos, {

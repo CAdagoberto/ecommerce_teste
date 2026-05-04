@@ -1,0 +1,93 @@
+/* Simulação de card de produto vazio enquanto carrega */
+
+.wrap {
+    width: 300px;
+    min-height: 460px;
+    border-radius: 14px;
+    border: 1px solid #e8e8e8;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.img {
+    height: 220px;
+    background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+    background-size: 200% 100%;
+    animation: pulsar 1.2s ease-in-out infinite;
+}
+
+.corpo {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.linha {
+    height: 14px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+    background-size: 200% 100%;
+    animation: pulsar 1.2s ease-in-out infinite;
+}
+
+.linhaCurta {
+    width: 55%;
+}
+
+.linhaMedia {
+    width: 85%;
+}
+
+.linhaAlta {
+    height: 40px;
+}
+
+.preco {
+    height: 22px;
+    width: 40%;
+    margin-top: 8px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+    background-size: 200% 100%;
+    animation: pulsar 1.2s ease-in-out infinite;
+}
+
+.botoes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 8px;
+}
+
+.btnFake {
+    height: 40px;
+    border-radius: 10px;
+    background: #f0f0f0;
+    animation: pulsar 1.2s ease-in-out infinite;
+}
+
+.btnFake:last-child {
+    animation-delay: 0.15s;
+}
+
+@keyframes pulsar {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .img,
+    .linha,
+    .preco,
+    .btnFake {
+        animation: none;
+        background: #eee;
+    }
+}

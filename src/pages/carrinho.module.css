@@ -61,6 +61,10 @@
     .gridResumo {
         grid-template-columns: 1fr;
     }
+
+    .pagina {
+        padding-top: 120px;
+    }
 }
 
 .lista {

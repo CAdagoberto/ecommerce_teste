@@ -1,4 +1,5 @@
 import CardProduto from '../cardProduto'
+import SkeletonCardProduto from '../SkeletonCardProduto'
 import styles from './GradeProdutos.module.css'
 import { montarEtiquetas } from '../../utils/produtoCatalogo'
 
@@ -8,7 +9,18 @@ export default function GradeProdutos(props) {
     let produtosFiltrados = props.produtosFiltrados
 
     if (carregando === true) {
-        return <p>Carregando...</p>
+        let placeholders = [0, 1, 2, 3, 4, 5, 6, 7]
+        return (
+            <div
+                className={styles.gridProdutos}
+                aria-busy="true"
+                aria-label="Carregando produtos"
+            >
+                {placeholders.map(function (n) {
+                    return <SkeletonCardProduto key={'sk-produto-' + n} />
+                })}
+            </div>
+        )
     }
 
     if (erroProdutos !== '') {
