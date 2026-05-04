@@ -20,52 +20,55 @@ const heroHome = {
     linkBotao: '/produtos',
 }
 
-export default function Home() {
+const Home = () => {
     const [produtos, setProdutos] = useState([])
     const [categorias, setCategorias] = useState([])
     const [carregando, setCarregando] = useState(true)
 
-    useEffect(function () {
+    useEffect(() => {
         let cancelar = false
 
-        let buscaProdutos = fetch('http://localhost:3000/produtos').then(
-            function (res) {
-                if (res.ok === false) {
-                    throw new Error('produtos')
+        const carregar = async () => {
+            try {
+                await esperarMs(700)
+
+                let resProdutos = await fetch(
+                    'http://localhost:3000/produtos'
+                )
+                let listaProdutos = []
+                if (resProdutos.ok === true) {
+                    listaProdutos = await resProdutos.json()
+                } else {
+                    console.error('Resposta ruim ao buscar produtos (home)')
                 }
-                return res.json()
-            }
-        )
 
-        let buscaCategorias = fetch('http://localhost:3000/categorias').then(
-            function (res) {
-                if (res.ok === false) {
-                    throw new Error('categorias')
+                let resCategorias = await fetch(
+                    'http://localhost:3000/categorias'
+                )
+                let listaCategorias = []
+                if (resCategorias.ok === true) {
+                    listaCategorias = await resCategorias.json()
+                } else {
+                    console.error('Resposta ruim ao buscar categorias (home)')
                 }
-                return res.json()
-            }
-        )
 
-        let demoraFake = esperarMs(700)
-
-        Promise.all([buscaProdutos, buscaCategorias, demoraFake])
-            .then(function (tudo) {
                 if (cancelar === true) {
                     return
                 }
-                setProdutos(tudo[0])
-                setCategorias(tudo[1])
-            })
-            .catch(function (erro) {
+                setProdutos(listaProdutos)
+                setCategorias(listaCategorias)
+            } catch (erro) {
                 console.error('Erro ao buscar dados da home:', erro)
-            })
-            .finally(function () {
+            } finally {
                 if (cancelar === false) {
                     setCarregando(false)
                 }
-            })
+            }
+        }
 
-        return function () {
+        carregar()
+
+        return () => {
             cancelar = true
         }
     }, [])
@@ -91,14 +94,12 @@ export default function Home() {
                             <SkeletonCardDestaque key="sk-cat-2" />
                         </>
                     ) : (
-                        categorias.map(function (categoria) {
-                            return (
-                                <CardDestaques
-                                    key={categoria.id}
-                                    {...categoria}
-                                />
-                            )
-                        })
+                        categorias.map(categoria => (
+                            <CardDestaques
+                                key={categoria.id}
+                                {...categoria}
+                            />
+                        ))
                     )}
                 </SecaoDestaques>
 
@@ -119,27 +120,23 @@ export default function Home() {
                             <SkeletonCardProduto key="sk-p-5" />
                         </div>
                     ) : (
-                        categorias.map(function (categoria) {
-                            return (
-                                <BlocoCategoria
-                                    key={categoria.id}
-                                    {...categoria}
-                                    produtos={produtos.filter(function (
-                                        produto
-                                    ) {
-                                        return (
-                                            produto.categoriaId ===
-                                            categoria.id
-                                        )
-                                    })}
-                                    titulo={categoria.nome}
-                                    descricao={categoria.descricao}
-                                />
-                            )
-                        })
+                        categorias.map(categoria => (
+                            <BlocoCategoria
+                                key={categoria.id}
+                                {...categoria}
+                                produtos={produtos.filter(
+                                    produto =>
+                                        produto.categoriaId === categoria.id
+                                )}
+                                titulo={categoria.nome}
+                                descricao={categoria.descricao}
+                            />
+                        ))
                     )}
                 </section>
             </main>
         </div>
     )
 }
+
+export default Home

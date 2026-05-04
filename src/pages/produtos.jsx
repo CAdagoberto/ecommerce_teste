@@ -15,7 +15,7 @@ const heroProdutos = {
     linkBotao: '/',
 }
 
-export default function Produtos() {
+const Produtos = () => {
     const [listaProdutos, setListaProdutos] = useState([])
     const [listaCategorias, setListaCategorias] = useState([])
     const [carregando, setCarregando] = useState(true)
@@ -29,67 +29,66 @@ export default function Produtos() {
     useEffect(() => {
         let aindaVale = true
 
-        let pedidoProdutos = fetch('http://localhost:3000/produtos').then(
-            function (res) {
-                if (res.ok === false) {
-                    throw new Error('erro http')
-                }
-                return res.json()
-            }
-        )
+        const carregarProdutos = async () => {
+            try {
+                await esperarMs(600)
 
-        let timerFake = esperarMs(600)
-
-        Promise.all([pedidoProdutos, timerFake])
-            .then(function (resultados) {
-                let dados = resultados[0]
+                let res = await fetch('http://localhost:3000/produtos')
                 if (aindaVale === false) {
                     return
                 }
+
+                if (res.ok === false) {
+                    setErroProdutos(
+                        'Não foi possível carregar o catálogo. Verifique o servidor.'
+                    )
+                    return
+                }
+
+                let dados = await res.json()
                 setListaProdutos(dados)
                 setErroProdutos('')
-            })
-            .catch(function (error) {
+            } catch (error) {
                 console.error('Erro ao buscar produtos:', error)
-                if (aindaVale === false) {
-                    return
+                if (aindaVale === true) {
+                    setErroProdutos(
+                        'Não foi possível carregar o catálogo. Verifique o servidor.'
+                    )
                 }
-                setErroProdutos(
-                    'Não foi possível carregar o catálogo. Verifique o servidor.'
-                )
-            })
-            .finally(function () {
+            } finally {
                 if (aindaVale === true) {
                     setCarregando(false)
                 }
-            })
+            }
+        }
 
-        return function () {
+        carregarProdutos()
+
+        return () => {
             aindaVale = false
         }
     }, [])
 
     useEffect(() => {
-        let pedidoCategorias = fetch('http://localhost:3000/categorias').then(
-            function (res) {
+        const carregarCategorias = async () => {
+            try {
+                await esperarMs(400)
+
+                let res = await fetch('http://localhost:3000/categorias')
                 if (res.ok === false) {
-                    throw new Error('erro http')
+                    console.error('Resposta ruim ao buscar categorias')
+                    return
                 }
-                return res.json()
-            }
-        )
 
-        let timerFake = esperarMs(400)
-
-        Promise.all([pedidoCategorias, timerFake])
-            .then(function (resultados) {
-                let dados = resultados[0]
+                let dados = await res.json()
                 setListaCategorias(dados)
                 setErroCategorias('')
-            })
-            .catch(function (error) {
+            } catch (error) {
                 console.error('Erro ao buscar categorias:', error)
-            })
+            }
+        }
+
+        carregarCategorias()
     }, [])
 
     let produtosFiltrados = filtrarEOrdenarProdutos(listaProdutos, {
@@ -141,3 +140,5 @@ export default function Produtos() {
         </div>
     )
 }
+
+export default Produtos

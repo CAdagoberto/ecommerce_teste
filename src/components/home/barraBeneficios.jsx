@@ -24,24 +24,24 @@ const ITENS_PADRAO = [
     },
 ]
 
-export default function BarraBeneficios({ itens = ITENS_PADRAO }) {
-    return (
-        <section className={styles.beneficios} aria-label="Benefícios da loja">
-            <ul className={styles.lista}>
-                {itens.map(function (item) {
-                    const IconeComponente = item.Icone
-                    return (
-                        <li key={item.id} className={styles.item}>
-                            <IconeComponente
-                                className={styles.icone}
-                                size={18}
-                                aria-hidden="true"
-                            />
-                            <span>{item.texto}</span>
-                        </li>
-                    )
-                })}
-            </ul>
-        </section>
-    )
-}
+const BarraBeneficios = ({ itens = ITENS_PADRAO }) => (
+    <section className={styles.beneficios} aria-label="Benefícios da loja">
+        <ul className={styles.lista}>
+            {itens.map(item => {
+                const IconeComponente = item.Icone
+                return (
+                    <li key={item.id} className={styles.item}>
+                        <IconeComponente
+                            className={styles.icone}
+                            size={18}
+                            aria-hidden="true"
+                        />
+                        <span>{item.texto}</span>
+                    </li>
+                )
+            })}
+        </ul>
+    </section>
+)
+
+export default BarraBeneficios

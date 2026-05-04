@@ -14,7 +14,7 @@ import { montarResumoPedido } from '../utils/carrinhoValidacao'
 
 const URL_API = 'http://localhost:3000'
 
-function formatarPreco(valor) {
+const formatarPreco = valor => {
     if (typeof valor !== 'number' || Number.isNaN(valor)) {
         return 'R$ 0,00'
     }
@@ -24,104 +24,93 @@ function formatarPreco(valor) {
     })
 }
 
-export default function Carrinho() {
-    const [linhasArmazenadas, setLinhasArmazenadas] = useState(function () {
-        return obterLinhasCarrinho()
-    })
+const Carrinho = () => {
+    const [linhasArmazenadas, setLinhasArmazenadas] = useState(() =>
+        obterLinhasCarrinho()
+    )
     const [produtosApi, setProdutosApi] = useState([])
     const [carregandoCatalogo, setCarregandoCatalogo] = useState(false)
     const [erroApi, setErroApi] = useState('')
 
-    const recarregarDoStorage = useCallback(function () {
+    const recarregarDoStorage = useCallback(() => {
         setLinhasArmazenadas(obterLinhasCarrinho())
     }, [])
 
-    useEffect(
-        function () {
-            function aoAtualizar() {
-                recarregarDoStorage()
+    useEffect(() => {
+        const aoAtualizar = () => {
+            recarregarDoStorage()
+        }
+        const aoStorageExterno = evento => {
+            if (
+                evento.key != null &&
+                evento.key !== CARRINHO_STORAGE_KEY
+            ) {
+                return
             }
-            function aoStorageExterno(evento) {
-                if (
-                    evento.key != null &&
-                    evento.key !== CARRINHO_STORAGE_KEY
-                ) {
-                    return
-                }
-                aoAtualizar()
-            }
-            window.addEventListener(EVENTO_CARRINHO_ATUALIZADO, aoAtualizar)
-            window.addEventListener('storage', aoStorageExterno)
-            return function () {
-                window.removeEventListener(
-                    EVENTO_CARRINHO_ATUALIZADO,
-                    aoAtualizar
-                )
-                window.removeEventListener('storage', aoStorageExterno)
-            }
-        },
-        [recarregarDoStorage]
-    )
+            aoAtualizar()
+        }
+        window.addEventListener(EVENTO_CARRINHO_ATUALIZADO, aoAtualizar)
+        window.addEventListener('storage', aoStorageExterno)
+        return () => {
+            window.removeEventListener(
+                EVENTO_CARRINHO_ATUALIZADO,
+                aoAtualizar
+            )
+            window.removeEventListener('storage', aoStorageExterno)
+        }
+    }, [recarregarDoStorage])
 
-    useEffect(
-        function () {
-            let cancelado = false
+    useEffect(() => {
+        let cancelado = false
 
+        const carregarCatalogo = async () => {
             if (linhasArmazenadas.length === 0) {
-                queueMicrotask(function () {
-                    if (cancelado) {
-                        return
-                    }
-                    setProdutosApi([])
-                    setErroApi('')
-                    setCarregandoCatalogo(false)
-                })
-                return function () {
-                    cancelado = true
-                }
+                setProdutosApi([])
+                setErroApi('')
+                setCarregandoCatalogo(false)
+                return
             }
 
-            queueMicrotask(function () {
-                if (cancelado) {
+            setCarregandoCatalogo(true)
+            setErroApi('')
+
+            try {
+                let res = await fetch(`${URL_API}/produtos`)
+                if (cancelado === true) {
                     return
                 }
-                setCarregandoCatalogo(true)
+
+                if (res.ok === false) {
+                    setErroApi(
+                        'Não foi possível validar o carrinho com o servidor. Inicie o JSON Server e tente de novo.'
+                    )
+                    setProdutosApi([])
+                    return
+                }
+
+                let dados = await res.json()
+                setProdutosApi(Array.isArray(dados) ? dados : [])
                 setErroApi('')
-            })
-
-            fetch(URL_API + '/produtos')
-                .then(function (res) {
-                    if (res.ok === false) {
-                        throw new Error('catalogo')
-                    }
-                    return res.json()
-                })
-                .then(function (dados) {
-                    if (cancelado === false) {
-                        setProdutosApi(Array.isArray(dados) ? dados : [])
-                        setErroApi('')
-                    }
-                })
-                .catch(function () {
-                    if (cancelado === false) {
-                        setErroApi(
-                            'Não foi possível validar o carrinho com o servidor. Inicie o JSON Server e tente de novo.'
-                        )
-                        setProdutosApi([])
-                    }
-                })
-                .finally(function () {
-                    if (cancelado === false) {
-                        setCarregandoCatalogo(false)
-                    }
-                })
-
-            return function () {
-                cancelado = true
+            } catch {
+                if (cancelado === false) {
+                    setErroApi(
+                        'Não foi possível validar o carrinho com o servidor. Inicie o JSON Server e tente de novo.'
+                    )
+                    setProdutosApi([])
+                }
+            } finally {
+                if (cancelado === false) {
+                    setCarregandoCatalogo(false)
+                }
             }
-        },
-        [linhasArmazenadas]
-    )
+        }
+
+        carregarCatalogo()
+
+        return () => {
+            cancelado = true
+        }
+    }, [linhasArmazenadas])
 
     const resumo =
         linhasArmazenadas.length === 0
@@ -131,11 +120,10 @@ export default function Carrinho() {
     const vazio = linhasArmazenadas.length === 0
 
     return (
-        <main className={'container paginaComNav ' + styles.pagina}>
+        <main className={`container paginaComNav ${styles.pagina}`}>
             <h1 className={styles.titulo}>Carrinho</h1>
             <p className={styles.subtitulo}>
-                Os valores e disponibilidade vêm do catálogo (API), como num
-                checkout real.
+                Veja o resumo do seu pedido antes de finalizar a compra.
             </p>
 
             {vazio ? (
@@ -157,13 +145,11 @@ export default function Carrinho() {
                                 Ajustes na simulação
                             </p>
                             <ul>
-                                {resumo.avisos.map(function (a, indice) {
-                                    return (
-                                        <li key={a.id + '-' + indice}>
-                                            {a.texto}
-                                        </li>
-                                    )
-                                })}
+                                {resumo.avisos.map((a, indice) => (
+                                    <li key={`${a.id}-${indice}`}>
+                                        {a.texto}
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     ) : null}
@@ -174,7 +160,7 @@ export default function Carrinho() {
                                 <p>Validando itens com o catálogo…</p>
                             ) : null}
 
-                            {resumo.detalhes.map(function (linha) {
+                            {resumo.detalhes.map(linha => {
                                 const p = linha.produtoApi
                                 const img = p != null ? p.img : null
                                 const nomeExibir =
@@ -183,12 +169,11 @@ export default function Carrinho() {
                                 return (
                                     <article
                                         key={linha.id}
-                                        className={
-                                            styles.cartaoLinha +
-                                            (linha.valido === false
-                                                ? ' ' + styles.cartaoLinhaInvalida
-                                                : '')
-                                        }
+                                        className={`${styles.cartaoLinha}${
+                                            linha.valido === false
+                                                ? ` ${styles.cartaoLinhaInvalida}`
+                                                : ''
+                                        }`}
                                     >
                                         <div className={styles.miniImg}>
                                             {img != null ? (
@@ -226,8 +211,9 @@ export default function Carrinho() {
 
                                             {linha.valido === true ? (
                                                 <p className={styles.meta}>
-                                                    {formatarPreco(p.valor)} cada
-                                                    · estoque {p.estoque} un.
+                                                    {formatarPreco(p.valor)}{' '}
+                                                    cada · estoque {p.estoque}{' '}
+                                                    un.
                                                 </p>
                                             ) : null}
 
@@ -257,7 +243,7 @@ export default function Carrinho() {
                                                                 styles.btnQtd
                                                             }
                                                             aria-label="Remover uma unidade"
-                                                            onClick={function () {
+                                                            onClick={() => {
                                                                 removerUmaUnidade(
                                                                     linha.id
                                                                 )
@@ -285,7 +271,7 @@ export default function Carrinho() {
                                                                 linha.quantidadeCarrinho >=
                                                                 p.estoque
                                                             }
-                                                            onClick={function () {
+                                                            onClick={() => {
                                                                 adicionarAoCarrinho(
                                                                     {
                                                                         id: linha.id,
@@ -321,7 +307,7 @@ export default function Carrinho() {
                                             <button
                                                 type="button"
                                                 className={styles.btnRemover}
-                                                onClick={function () {
+                                                onClick={() => {
                                                     removerTodasUnidades(
                                                         linha.id
                                                     )
@@ -341,29 +327,26 @@ export default function Carrinho() {
                             <div className={styles.linhaResumo}>
                                 <span>Itens válidos</span>
                                 <span>
-                                    {resumo.detalhes.filter(function (d) {
-                                        return d.valido === true
-                                    }).length}{' '}
+                                    {
+                                        resumo.detalhes.filter(
+                                            d => d.valido === true
+                                        ).length
+                                    }{' '}
                                     tipo(s)
                                 </span>
                             </div>
                             <div className={styles.total}>
-                                <span>Total estimado</span>
+                                <span>Resumo do pedido</span>
                                 <span className={styles.totalValor}>
                                     {erroApi !== ''
                                         ? '—'
                                         : formatarPreco(resumo.subtotal)}
                                 </span>
                             </div>
-                            <p className={styles.notaSimulacao}>
-                                Total calculado só com itens validados na API
-                                (preço atual, disponibilidade e estoque). Nada
-                                monetário fica salvo no navegador.
-                            </p>
                             <button
                                 type="button"
                                 className={styles.btnEsvaziar}
-                                onClick={function () {
+                                onClick={() => {
                                     esvaziarCarrinho()
                                     recarregarDoStorage()
                                 }}
@@ -377,3 +360,5 @@ export default function Carrinho() {
         </main>
     )
 }
+
+export default Carrinho

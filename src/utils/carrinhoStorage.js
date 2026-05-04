@@ -5,7 +5,7 @@ export const CARRINHO_STORAGE_KEY = 'ecommerce_carrinho_v1'
 export const EVENTO_CARRINHO_ATUALIZADO = 'ecommerce-carrinho-atualizado'
 
 // avisa a navbar e outras telas que o carrinho mudou
-function avisarOutrasPartes() {
+const avisarOutrasPartes = () => {
     if (typeof window === 'undefined') {
         return
     }
@@ -13,7 +13,7 @@ function avisarOutrasPartes() {
 }
 
 // tenta transformar o id em número; se não der, devolve null
-function pegarIdNumero(valor) {
+const pegarIdNumero = valor => {
     if (typeof valor === 'number') {
         if (isNaN(valor)) {
             return null
@@ -28,7 +28,7 @@ function pegarIdNumero(valor) {
 }
 
 // confere se o objeto tem só id e nome e se os valores prestam
-function itemEstaOk(item) {
+const itemEstaOk = item => {
     if (item === null || item === undefined) {
         return false
     }
@@ -60,13 +60,13 @@ function itemEstaOk(item) {
 }
 
 // grava o array no localStorage e dispara o evento
-function guardarListaNoLocalStorage(lista) {
+const guardarListaNoLocalStorage = lista => {
     let texto = JSON.stringify(lista)
     window.localStorage.setItem(CARRINHO_STORAGE_KEY, texto)
     avisarOutrasPartes()
 }
 
-export function obterLinhasCarrinho() {
+export const obterLinhasCarrinho = () => {
     if (typeof window === 'undefined') {
         return []
     }
@@ -102,7 +102,7 @@ export function obterLinhasCarrinho() {
     return resultado
 }
 
-export function salvarLinhasCarrinho(linhas) {
+export const salvarLinhasCarrinho = linhas => {
     if (typeof window === 'undefined') {
         return
     }
@@ -121,7 +121,7 @@ export function salvarLinhasCarrinho(linhas) {
     guardarListaNoLocalStorage(novaLista)
 }
 
-export function adicionarAoCarrinho(item) {
+export const adicionarAoCarrinho = item => {
     if (itemEstaOk(item) === false) {
         return obterLinhasCarrinho()
     }
@@ -136,7 +136,7 @@ export function adicionarAoCarrinho(item) {
     return lista
 }
 
-export function removerUmaUnidade(id) {
+export const removerUmaUnidade = id => {
     let idNum = pegarIdNumero(id)
     if (idNum === null) {
         return obterLinhasCarrinho()
@@ -160,7 +160,7 @@ export function removerUmaUnidade(id) {
     return lista
 }
 
-export function removerTodasUnidades(id) {
+export const removerTodasUnidades = id => {
     let idNum = pegarIdNumero(id)
     if (idNum === null) {
         return obterLinhasCarrinho()
@@ -177,7 +177,7 @@ export function removerTodasUnidades(id) {
     return nova
 }
 
-export function esvaziarCarrinho() {
+export const esvaziarCarrinho = () => {
     if (typeof window === 'undefined') {
         return
     }
@@ -185,7 +185,7 @@ export function esvaziarCarrinho() {
     avisarOutrasPartes()
 }
 
-export function contarUnidadesNoCarrinho() {
+export const contarUnidadesNoCarrinho = () => {
     let lista = obterLinhasCarrinho()
     return lista.length
 }

@@ -1,6 +1,6 @@
 // Junta as linhas do carrinho com a lista que veio da API e monta o resumo (preço, estoque, etc).
 
-function pegarIdNumero(valor) {
+const pegarIdNumero = valor => {
     if (typeof valor === 'number') {
         if (isNaN(valor)) {
             return null
@@ -15,7 +15,7 @@ function pegarIdNumero(valor) {
 }
 
 // procura o produto no array da API pelo id
-function acharProdutoNoCatalogo(catalogo, idProcurado) {
+const acharProdutoNoCatalogo = (catalogo, idProcurado) => {
     for (let i = 0; i < catalogo.length; i++) {
         let p = catalogo[i]
         let idP = pegarIdNumero(p.id)
@@ -27,7 +27,7 @@ function acharProdutoNoCatalogo(catalogo, idProcurado) {
 }
 
 // junta várias linhas com o mesmo id e conta quantas tem
-export function agregarLinhasPorId(linhasDoStorage) {
+export const agregarLinhasPorId = linhasDoStorage => {
     if (linhasDoStorage instanceof Array === false) {
         return []
     }
@@ -70,7 +70,7 @@ export function agregarLinhasPorId(linhasDoStorage) {
     return grupos
 }
 
-export function montarResumoPedido(linhasDoStorage, produtosDaApi) {
+export const montarResumoPedido = (linhasDoStorage, produtosDaApi) => {
     let catalogo = []
     if (produtosDaApi instanceof Array) {
         catalogo = produtosDaApi
@@ -139,12 +139,7 @@ export function montarResumoPedido(linhasDoStorage, produtosDaApi) {
         if (qtdQueVaiPagar < qtdNoCarrinho) {
             avisos.push({
                 id: id,
-                texto:
-                    'Quantidade de "' +
-                    produto.nome +
-                    '" limitada ao estoque (' +
-                    estoque +
-                    ' un.).',
+                texto: `Quantidade de "${produto.nome}" limitada ao estoque (${estoque} un.).`,
             })
         }
 

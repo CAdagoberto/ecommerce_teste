@@ -1,6 +1,6 @@
 import styles from './FiltrosProdutos.module.css'
 
-export default function FiltrosProdutos(props) {
+const FiltrosProdutos = props => {
     let textoBusca = props.textoBusca
     let onMudarBusca = props.onMudarBusca
     let categoriaEscolhida = props.categoriaEscolhida
@@ -11,7 +11,7 @@ export default function FiltrosProdutos(props) {
 
     return (
         <div className={styles.areaFiltros}>
-            <div className={styles.campoFiltro + ' ' + styles.campoBusca}>
+            <div className={`${styles.campoFiltro} ${styles.campoBusca}`}>
                 <label htmlFor="busca-nome">Buscar por nome</label>
                 <input
                     id="busca-nome"
@@ -30,13 +30,11 @@ export default function FiltrosProdutos(props) {
                     onChange={onMudarCategoria}
                 >
                     <option value="">Todas</option>
-                    {categorias.map(function (cat) {
-                        return (
-                            <option key={cat.id} value={cat.id}>
-                                {cat.nome}
-                            </option>
-                        )
-                    })}
+                    {categorias.map(cat => (
+                        <option key={cat.id} value={cat.id}>
+                            {cat.nome}
+                        </option>
+                    ))}
                 </select>
             </div>
 
@@ -55,3 +53,5 @@ export default function FiltrosProdutos(props) {
         </div>
     )
 }
+
+export default FiltrosProdutos

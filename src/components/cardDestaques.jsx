@@ -2,9 +2,9 @@ import styles from './cardDestaques.module.css'
 import { Link } from 'react-router-dom'
 import { IoIosArrowForward } from 'react-icons/io'
 
-export default function CardDestaques({ nome, img, id }) {
+const CardDestaques = ({ nome, img, id }) => {
     const urlDaImagem = img
-    
+
     return (
         <article className={styles.cardDestaques}>
             <div className={styles.molduraImagem}>
@@ -29,3 +29,5 @@ export default function CardDestaques({ nome, img, id }) {
         </article>
     )
 }
+
+export default CardDestaques

@@ -3,7 +3,7 @@ import SkeletonCardProduto from '../SkeletonCardProduto'
 import styles from './GradeProdutos.module.css'
 import { montarEtiquetas } from '../../utils/produtoCatalogo'
 
-export default function GradeProdutos(props) {
+const GradeProdutos = props => {
     let carregando = props.carregando
     let erroProdutos = props.erroProdutos
     let produtosFiltrados = props.produtosFiltrados
@@ -16,9 +16,9 @@ export default function GradeProdutos(props) {
                 aria-busy="true"
                 aria-label="Carregando produtos"
             >
-                {placeholders.map(function (n) {
-                    return <SkeletonCardProduto key={'sk-produto-' + n} />
-                })}
+                {placeholders.map(n => (
+                    <SkeletonCardProduto key={`sk-produto-${n}`} />
+                ))}
             </div>
         )
     }
@@ -39,22 +39,22 @@ export default function GradeProdutos(props) {
                     Nenhum produto encontrado com esses filtros.
                 </p>
             ) : (
-                produtosFiltrados.map(function (produto) {
-                    return (
-                        <CardProduto
-                            key={produto.id}
-                            id={produto.id}
-                            nome={produto.nome}
-                            descricao={produto.descricao}
-                            valor={produto.valor}
-                            img={produto.img}
-                            estoque={produto.estoque}
-                            etiquetas={montarEtiquetas(produto)}
-                            disponivel={produto.disponivel}
-                        />
-                    )
-                })
+                produtosFiltrados.map(produto => (
+                    <CardProduto
+                        key={produto.id}
+                        id={produto.id}
+                        nome={produto.nome}
+                        descricao={produto.descricao}
+                        valor={produto.valor}
+                        img={produto.img}
+                        estoque={produto.estoque}
+                        etiquetas={montarEtiquetas(produto)}
+                        disponivel={produto.disponivel}
+                    />
+                ))
             )}
         </div>
     )
 }
+
+export default GradeProdutos

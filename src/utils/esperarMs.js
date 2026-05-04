@@ -1,9 +1,8 @@
 // Simulando requisição da API
 
-export function esperarMs(tempo) {
-    return new Promise((resolve) => {
+export const esperarMs = tempo =>
+    new Promise(resolve => {
         setTimeout(() => {
             resolve()
         }, tempo)
     })
-}

@@ -2,9 +2,7 @@ import { Link } from 'react-router-dom'
 import styles from './cardProduto.module.css'
 import { adicionarAoCarrinho } from '../utils/carrinhoStorage'
 
-
-
-export default function CardProduto(props) {
+const CardProduto = props => {
     let id = props.id
     let nome = props.nome
     let descricao = props.descricao
@@ -18,9 +16,7 @@ export default function CardProduto(props) {
         etiquetas = []
     }
 
-    
-
-    let urlDoProduto = '/produto/' + id
+    let urlDoProduto = `/produto/${id}`
 
     if (typeof estoque === 'number') {
         if (estoque <= 0) {
@@ -28,7 +24,7 @@ export default function CardProduto(props) {
         }
     }
 
-    function aoClicarAdicionar(evento) {
+    const aoClicarAdicionar = evento => {
         evento.preventDefault()
         evento.stopPropagation()
         if (disponivel === false) {
@@ -42,7 +38,7 @@ export default function CardProduto(props) {
             <Link
                 to={urlDoProduto}
                 className={styles.areaMidia}
-                aria-label={'Ver detalhes de ' + nome}
+                aria-label={`Ver detalhes de ${nome}`}
             >
                 <div className={styles.imgProduto}>
                     <img src={img} alt="" loading="lazy" decoding="async" />
@@ -72,16 +68,14 @@ export default function CardProduto(props) {
 
                 {etiquetas.length > 0 ? (
                     <div className={styles.etiquetas}>
-                        {etiquetas.map(function (etiqueta) {
-                            return (
-                                <span
-                                    className={styles.etiqueta}
-                                    key={etiqueta.id}
-                                >
-                                    {etiqueta.nome}
-                                </span>
-                            )
-                        })}
+                        {etiquetas.map(etiqueta => (
+                            <span
+                                className={styles.etiqueta}
+                                key={etiqueta.id}
+                            >
+                                {etiqueta.nome}
+                            </span>
+                        ))}
                     </div>
                 ) : null}
 
@@ -104,7 +98,8 @@ export default function CardProduto(props) {
                         </button>
                         <Link
                             to={urlDoProduto}
-                            className={styles.botaoDetalhes}>
+                            className={styles.botaoDetalhes}
+                        >
                             Ver detalhes
                         </Link>
                     </div>
@@ -113,3 +108,5 @@ export default function CardProduto(props) {
         </article>
     )
 }
+
+export default CardProduto

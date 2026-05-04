@@ -14,12 +14,11 @@ const linksDoMenu = [
     { to: '/produtos', texto: 'Produtos' },
 ]
 
-export default function Navbar() {
+const Navbar = () => {
     const [menuAberto, setMenuAberto] = useState(false)
     const [qtdCarrinho, setQtdCarrinho] = useState(contarUnidadesNoCarrinho)
 
-    // abre ou fecha o menu do celular
-    function abrirFecharMenu() {
+    const abrirFecharMenu = () => {
         if (menuAberto === true) {
             setMenuAberto(false)
         } else {
@@ -27,18 +26,16 @@ export default function Navbar() {
         }
     }
 
-    function fecharMenu() {
+    const fecharMenu = () => {
         setMenuAberto(false)
     }
 
-    // quando o menu ta aberto no celular, nao deixa rolar a pagina de baixo
-    // e fecha se apertar ESC
     useEffect(() => {
         if (menuAberto === false) {
             return
         }
 
-        function quandoApertarTecla(evento) {
+        const quandoApertarTecla = evento => {
             if (evento.key === 'Escape') {
                 setMenuAberto(false)
             }
@@ -47,45 +44,39 @@ export default function Navbar() {
         document.addEventListener('keydown', quandoApertarTecla)
         document.body.style.overflow = 'hidden'
 
-        return function limpar() {
+        return () => {
             document.removeEventListener('keydown', quandoApertarTecla)
             document.body.style.overflow = ''
         }
     }, [menuAberto])
 
-    useEffect(
-        function () {
-            function atualizarContagem() {
-                setQtdCarrinho(contarUnidadesNoCarrinho())
+    useEffect(() => {
+        const atualizarContagem = () => {
+            setQtdCarrinho(contarUnidadesNoCarrinho())
+        }
+        const aoStorageExterno = evento => {
+            if (
+                evento.key != null &&
+                evento.key !== CARRINHO_STORAGE_KEY
+            ) {
+                return
             }
-            function aoStorageExterno(evento) {
-                if (
-                    evento.key != null &&
-                    evento.key !== CARRINHO_STORAGE_KEY
-                ) {
-                    return
-                }
-                atualizarContagem()
-            }
-            window.addEventListener(
+            atualizarContagem()
+        }
+        window.addEventListener(EVENTO_CARRINHO_ATUALIZADO, atualizarContagem)
+        window.addEventListener('storage', aoStorageExterno)
+        return () => {
+            window.removeEventListener(
                 EVENTO_CARRINHO_ATUALIZADO,
                 atualizarContagem
             )
-            window.addEventListener('storage', aoStorageExterno)
-            return function () {
-                window.removeEventListener(
-                    EVENTO_CARRINHO_ATUALIZADO,
-                    atualizarContagem
-                )
-                window.removeEventListener('storage', aoStorageExterno)
-            }
-        },
-        []
-    )
+            window.removeEventListener('storage', aoStorageExterno)
+        }
+    }, [])
 
     let classPainel = styles.painelLinks
     if (menuAberto === true) {
-        classPainel = classPainel + ' ' + styles.painelLinksAberto
+        classPainel = `${classPainel} ${styles.painelLinksAberto}`
     }
 
     return (
@@ -97,28 +88,22 @@ export default function Navbar() {
                     </Link>
 
                     <div id="menu-links-lateral" className={classPainel}>
-                        {linksDoMenu.map(function (item) {
-                            return (
-                                <NavLink
-                                    key={item.to}
-                                    to={item.to}
-                                    end={item.to === '/'}
-                                    onClick={fecharMenu}
-                                    className={function (props) {
-                                        if (props.isActive === true) {
-                                            return (
-                                                styles.navLink +
-                                                ' ' +
-                                                styles.navLinkAtivo
-                                            )
-                                        }
-                                        return styles.navLink
-                                    }}
-                                >
-                                    {item.texto}
-                                </NavLink>
-                            )
-                        })}
+                        {linksDoMenu.map(item => (
+                            <NavLink
+                                key={item.to}
+                                to={item.to}
+                                end={item.to === '/'}
+                                onClick={fecharMenu}
+                                className={props => {
+                                    if (props.isActive === true) {
+                                        return `${styles.navLink} ${styles.navLinkAtivo}`
+                                    }
+                                    return styles.navLink
+                                }}
+                            >
+                                {item.texto}
+                            </NavLink>
+                        ))}
                     </div>
 
                     <div className={styles.acoes}>
@@ -127,9 +112,7 @@ export default function Navbar() {
                             className={styles.carrinho}
                             aria-label={
                                 qtdCarrinho > 0
-                                    ? 'Ver carrinho, ' +
-                                      qtdCarrinho +
-                                      ' itens'
+                                    ? `Ver carrinho, ${qtdCarrinho} itens`
                                     : 'Ver carrinho'
                             }
                             onClick={fecharMenu}
@@ -152,7 +135,9 @@ export default function Navbar() {
                             aria-expanded={menuAberto}
                             aria-controls="menu-links-lateral"
                             aria-label={
-                                menuAberto === true ? 'Fechar menu' : 'Abrir menu'
+                                menuAberto === true
+                                    ? 'Fechar menu'
+                                    : 'Abrir menu'
                             }
                             onClick={abrirFecharMenu}
                         >
@@ -185,3 +170,5 @@ export default function Navbar() {
         </header>
     )
 }
+
+export default Navbar

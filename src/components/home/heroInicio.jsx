@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom'
 import styles from './heroInicio.module.css'
 
-export default function HeroInicio(props) {
-    let titulo = props.titulo
-    let subtitulo = props.subtitulo
-    let rotuloBotao = props.rotuloBotao
-    let imagem = props.imagem
-    let linkBotao = props.linkBotao
-
+const HeroInicio = ({
+    titulo,
+    subtitulo,
+    rotuloBotao,
+    imagem,
+    linkBotao,
+}) => {
     let estiloFundo = {
-        backgroundImage: 'url("' + imagem + '")',
+        backgroundImage: `url("${imagem}")`,
     }
 
     return (
@@ -31,3 +31,5 @@ export default function HeroInicio(props) {
         </section>
     )
 }
+
+export default HeroInicio

@@ -1,18 +1,18 @@
 // coisas de produto que a pagina e os cards usam (sem React)
 
-export function montarEtiquetas(produto) {
+export const montarEtiquetas = produto => {
     let lista = []
     if (produto.etiquetaTamanho) {
-        lista.push({ id: produto.id + '-tam', nome: produto.etiquetaTamanho })
+        lista.push({ id: `${produto.id}-tam`, nome: produto.etiquetaTamanho })
     }
     if (produto.etiquetaVariacao) {
-        lista.push({ id: produto.id + '-var', nome: produto.etiquetaVariacao })
+        lista.push({ id: `${produto.id}-var`, nome: produto.etiquetaVariacao })
     }
     return lista
 }
 
 // filtra por categoria e nome, depois ordena por preço se pedir
-export function filtrarEOrdenarProdutos(lista, opcoes) {
+export const filtrarEOrdenarProdutos = (lista, opcoes) => {
     let textoBusca = opcoes.textoBusca
     let categoriaEscolhida = opcoes.categoriaEscolhida
     let ordenacao = opcoes.ordenacao

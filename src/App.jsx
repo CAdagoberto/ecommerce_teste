@@ -8,23 +8,19 @@ import Carrinho from './pages/carrinho'
 import Navbar from './components/navbar'
 import Footer from './components/footer'
 
-function App() {
-
-
-  return (
+const App = () => (
     <>
-      <Navbar />
-    
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/produtos" element={<Produtos />} />
-        <Route path="/produto/:id" element={<Produto />} />
-        <Route path="/carrinho" element={<Carrinho />} />
-      </Routes>
-      
-      <Footer />
+        <Navbar />
+
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/produtos" element={<Produtos />} />
+            <Route path="/produto/:id" element={<Produto />} />
+            <Route path="/carrinho" element={<Carrinho />} />
+        </Routes>
+
+        <Footer />
     </>
-  )
-}
+)
 
 export default App
