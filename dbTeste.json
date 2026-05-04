@@ -1,0 +1,87 @@
+{
+  "categorias": [
+    { "id": "dry-fit", "nome": "Camisetas dry fit", "slug": "camisetas-dry-fit" },
+    { "id": "social", "nome": "Social", "slug": "social" },
+    { "id": "blusas", "nome": "Blusas", "slug": "blusas" }
+  ],
+  "produtos": [
+    {
+      "id": 1,
+      "categoriaId": "dry-fit",
+      "sku": "DF-BSC-001-BK-M",
+      "slug": "camiseta-dry-fit-basica-preta-m",
+      "nome": "Camiseta dry fit básica",
+      "descricao": "Tecido leve que seca rápido, ideal para treino e dia a dia. Modelagem esportiva.",
+      "valor": 59.9,
+      "etiquetaTamanho": "M",
+      "etiquetaVariacao": "PRETO",
+      "img": "https://placehold.co/600x400/1a1a1a/ffffff?text=Dry+fit",
+      "estoque": 30
+    },
+    {
+      "id": 2,
+      "categoriaId": "dry-fit",
+      "sku": "DF-RUN-002-AZ-G",
+      "slug": "camiseta-dry-fit-running-azul-g",
+      "nome": "Camiseta dry fit running",
+      "descricao": "Recortes laterais para ventilação e costuras planas que reduzem atrito na corrida.",
+      "valor": 79.9,
+      "etiquetaTamanho": "G",
+      "etiquetaVariacao": "AZUL",
+      "img": "https://placehold.co/600x400/1e3a8a/ffffff?text=Dry+fit",
+      "estoque": 22
+    },
+    {
+      "id": 3,
+      "categoriaId": "social",
+      "sku": "SC-MLG-003-BR-40",
+      "slug": "camisa-social-manga-longa-branca-40",
+      "nome": "Camisa social manga longa",
+      "descricao": "Algodão egípcio, gola clássica e punho com botão. Passa fácil, caimento impecável.",
+      "valor": 129.9,
+      "etiquetaTamanho": "40",
+      "etiquetaVariacao": "BRANCO",
+      "img": "https://placehold.co/600x400/f8f8f8/333333?text=Social",
+      "estoque": 15
+    },
+    {
+      "id": 4,
+      "categoriaId": "social",
+      "sku": "SC-MCT-004-MR-42",
+      "slug": "camisa-social-manga-curta-marinho-42",
+      "nome": "Camisa social manga curta",
+      "descricao": "Corte slim discreto, abotoamento frontal e bolso embutido no peito.",
+      "valor": 99.9,
+      "etiquetaTamanho": "42",
+      "etiquetaVariacao": "AZUL MARINHO",
+      "img": "https://placehold.co/600x400/1e293b/ffffff?text=Social",
+      "estoque": 18
+    },
+    {
+      "id": 5,
+      "categoriaId": "blusas",
+      "sku": "BL-CRS-005-RS-P",
+      "slug": "blusa-canelada-rose-p",
+      "nome": "Blusa canelada gola V",
+      "descricao": "Malha canelada com elastano, toque macio e ótimo ajuste ao corpo.",
+      "valor": 89.9,
+      "etiquetaTamanho": "P",
+      "etiquetaVariacao": "ROSE",
+      "img": "https://placehold.co/600x400/e8b4b8/333333?text=Blusa",
+      "estoque": 24
+    },
+    {
+      "id": 6,
+      "categoriaId": "blusas",
+      "sku": "BL-MH-006-PT-M",
+      "slug": "blusa-manga-longa-preta-m",
+      "nome": "Blusa manga longa essencial",
+      "descricao": "Peça coringa para meia estação; combina com calça jeans ou saia.",
+      "valor": 69.9,
+      "etiquetaTamanho": "M",
+      "etiquetaVariacao": "PRETO",
+      "img": "https://placehold.co/600x400/2d2d2d/ffffff?text=Blusa",
+      "estoque": 20
+    }
+  ]
+}

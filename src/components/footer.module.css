@@ -1,0 +1,14 @@
+footer {
+    background-color: #313131;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-top: var(--espacamento);
+}
+
+.footerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
