@@ -1,0 +1,90 @@
+.cardDestaques {
+    position: relative;
+    width: 100%;
+    max-width: 302px;
+    
+    overflow: hidden;
+    background-color: #e5e5e5;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cardDestaques:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.16);
+    border-radius: 5px;
+}
+
+.molduraImagem {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    width: 100%;
+    overflow: hidden;
+}
+
+.imagem {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.cardDestaques:hover .imagem {
+    transform: scale(1.04);
+}
+
+.conteudo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    color: #fff;
+    background-color: var(--overlay-preto, rgba(0, 0, 0, 0.5));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.titulo {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    flex: 1;
+    min-width: 0;
+}
+
+.botao {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.botao:hover {
+    background-color: rgba(255, 255, 255, 0.28);
+    border-color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+}
+
+.icone {
+    margin-left: 4px;
+    font-size: 1rem;
+}

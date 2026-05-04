@@ -15,12 +15,20 @@
 }
 
 .item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    max-width: 14rem;
     font-size: 0.8125rem;
     font-weight: 500;
     color: var(--texto-suave, #5c5c5c);
-    text-decoration: none;
-    letter-spacing: 0.02em;
+    text-align: left;
     line-height: 1.45;
-    text-align: center;
-    max-width: 14rem;
+}
+
+.icone {
+    flex-shrink: 0;
+    color: #444;
 }

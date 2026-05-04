@@ -14,6 +14,8 @@
   --texto-suave: #5c5c5c;
   --texto-leve: #737373;
   --font-sans: "Noto Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* fundo escuro semitransparente (#00000080 ≈ 50%) — use com backdrop-filter onde quiser vidro */
+  --overlay-preto: rgba(0, 0, 0, 0.5);
 }
 
 body {

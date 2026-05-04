@@ -1,8 +1,8 @@
 {
   "categorias": [
-    { "id": "dry-fit", "nome": "Camisetas dry fit", "descricao": "Camisetas dry fit para corrida e treino", "slug": "camisetas-dry-fit" },
-    { "id": "social", "nome": "Social", "descricao": "Camisetas sociais para uso diário", "slug": "social" },
-    { "id": "blusas", "nome": "Blusas", "descricao": "Blusas confortáveis para uso diário", "slug": "blusas" }
+    { "id": "dry-fit", "nome": "Camisetas dry fit", "descricao": "Camisetas dry fit para corrida e treino", "slug": "camisetas-dry-fit", "img": "/assets/images/categorias/dryFit.webp" },
+    { "id": "social", "nome": "Social", "descricao": "Camisetas sociais para uso diário", "slug": "social", "img": "/assets/images/categorias/social.webp" },
+    { "id": "blusas", "nome": "Blusas", "descricao": "Blusas confortáveis para uso diário", "slug": "blusas", "img": "/assets/images/categorias/blusa.webp" }
   ],
   "produtos": [
     {

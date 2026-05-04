@@ -6,6 +6,7 @@ import BarraBeneficios from '../components/home/barraBeneficios'
 import SecaoDestaques from '../components/home/secaoDestaques'
 import ChamadaAcao from '../components/home/chamadaAcao'
 import { useEffect, useState } from 'react'
+import CardDestaques from '../components/cardDestaques'
 
 export default function Home() {
 
@@ -33,10 +34,12 @@ export default function Home() {
             <main className="container">
                 <BarraBeneficios />
 
+                
+
                 <SecaoDestaques>
-                    <CardProduto />
-                    <CardProduto />
-                    <CardProduto />
+                    {categorias.map((categoria) => (
+                        <CardDestaques key={categoria.id} {...categoria} />
+                    ))}
                 </SecaoDestaques>
 
                 <ChamadaAcao />
