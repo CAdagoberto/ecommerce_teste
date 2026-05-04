@@ -2,16 +2,21 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { FaBars, FaShoppingCart, FaTimes } from 'react-icons/fa'
 import styles from './navbar.module.css'
+import {
+    contarUnidadesNoCarrinho,
+    EVENTO_CARRINHO_ATUALIZADO,
+    CARRINHO_STORAGE_KEY,
+} from '../utils/carrinhoStorage'
 
 // lista dos links que aparecem no menu (desktop e mobile)
 const linksDoMenu = [
     { to: '/', texto: 'Início' },
     { to: '/produtos', texto: 'Produtos' },
-    { to: '/produto/1', texto: 'Produto exemplo' },
 ]
 
 export default function Navbar() {
     const [menuAberto, setMenuAberto] = useState(false)
+    const [qtdCarrinho, setQtdCarrinho] = useState(contarUnidadesNoCarrinho)
 
     // abre ou fecha o menu do celular
     function abrirFecharMenu() {
@@ -47,6 +52,36 @@ export default function Navbar() {
             document.body.style.overflow = ''
         }
     }, [menuAberto])
+
+    useEffect(
+        function () {
+            function atualizarContagem() {
+                setQtdCarrinho(contarUnidadesNoCarrinho())
+            }
+            function aoStorageExterno(evento) {
+                if (
+                    evento.key != null &&
+                    evento.key !== CARRINHO_STORAGE_KEY
+                ) {
+                    return
+                }
+                atualizarContagem()
+            }
+            window.addEventListener(
+                EVENTO_CARRINHO_ATUALIZADO,
+                atualizarContagem
+            )
+            window.addEventListener('storage', aoStorageExterno)
+            return function () {
+                window.removeEventListener(
+                    EVENTO_CARRINHO_ATUALIZADO,
+                    atualizarContagem
+                )
+                window.removeEventListener('storage', aoStorageExterno)
+            }
+        },
+        []
+    )
 
     let classPainel = styles.painelLinks
     if (menuAberto === true) {
@@ -90,7 +125,13 @@ export default function Navbar() {
                         <Link
                             to="/carrinho"
                             className={styles.carrinho}
-                            aria-label="Ver carrinho"
+                            aria-label={
+                                qtdCarrinho > 0
+                                    ? 'Ver carrinho, ' +
+                                      qtdCarrinho +
+                                      ' itens'
+                                    : 'Ver carrinho'
+                            }
                             onClick={fecharMenu}
                         >
                             <FaShoppingCart
@@ -98,6 +139,11 @@ export default function Navbar() {
                                 size={22}
                                 aria-hidden="true"
                             />
+                            {qtdCarrinho > 0 ? (
+                                <span className={styles.badgeCarrinho}>
+                                    {qtdCarrinho > 99 ? '99+' : qtdCarrinho}
+                                </span>
+                            ) : null}
                         </Link>
 
                         <button

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import styles from './cardProduto.module.css'
+import { adicionarAoCarrinho } from '../utils/carrinhoStorage'
 
 
 
@@ -27,6 +28,15 @@ export default function CardProduto(props) {
         }
     }
 
+    function aoClicarAdicionar(evento) {
+        evento.preventDefault()
+        evento.stopPropagation()
+        if (disponivel === false) {
+            return
+        }
+        adicionarAoCarrinho({ id: id, nome: nome })
+    }
+
     return (
         <article className={styles.cardProduto}>
             <Link
@@ -51,8 +61,8 @@ export default function CardProduto(props) {
                         <span
                             className={
                                 disponivel
-                                    ? styles.pillEstoque
-                                    : styles.pillEstoqueOff
+                                    ? styles.Estoque
+                                    : styles.EstoqueOff
                             }
                         >
                             {disponivel ? 'Disponível' : 'Esgotado'}
@@ -86,7 +96,10 @@ export default function CardProduto(props) {
                     <div className={styles.linhaBotoes}>
                         <button
                             type="button"
-                            className={styles.botaoCarrinho}>
+                            className={styles.botaoCarrinho}
+                            disabled={disponivel === false}
+                            onClick={aoClicarAdicionar}
+                        >
                             Adicionar ao carrinho
                         </button>
                         <Link

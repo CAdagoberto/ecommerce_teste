@@ -104,8 +104,8 @@
     border-radius: 2px;
 }
 
-.pillEstoque,
-.pillEstoqueOff {
+.Estoque,
+.EstoqueOff {
     flex-shrink: 0;
     font-size: 10px;
     font-weight: 600;
@@ -115,13 +115,13 @@
     border-radius: 999px;
 }
 
-.pillEstoque {
+.Estoque {
     color: #166534;
     background: #dcfce7;
     border: 1px solid #bbf7d0;
 }
 
-.pillEstoqueOff {
+.EstoqueOff {
     color: #991b1b;
     background: #fee2e2;
     border: 1px solid #fecaca;

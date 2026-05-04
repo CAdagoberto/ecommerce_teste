@@ -26,16 +26,21 @@ export default function Produtos() {
     const [ordenacao, setOrdenacao] = useState('padrao')
 
     useEffect(() => {
-        setCarregando(true)
-        setErroProdutos('')
-
         fetch('http://localhost:3000/produtos')
             .then(res => res.json())
             .then(dados => {
                 setListaProdutos(dados)
                 setErroProdutos('')
             })
-                .catch(error => console.error('Erro ao buscar produtos:', error))
+            .catch((error) => {
+                console.error('Erro ao buscar produtos:', error)
+                setErroProdutos(
+                    'Não foi possível carregar o catálogo. Verifique o servidor.'
+                )
+            })
+            .finally(() => {
+                setCarregando(false)
+            })
     }, [])
 
     useEffect(() => {

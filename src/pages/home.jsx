@@ -20,15 +20,12 @@ const heroHome = {
 export default function Home() {
     const [produtos, setProdutos] = useState([])
     const [categorias, setCategorias] = useState([])
-    const [erroProdutos, setErroProdutos] = useState('')
-    const [erroCategorias, setErroCategorias] = useState('')
 
     useEffect(function () {
         fetch('http://localhost:3000/produtos')
             .then(res => res.json())
             .then(data => {
                 setProdutos(data)
-                setErroProdutos('')
             })
               .catch(error => console.error('Erro ao buscar produtos:', error))
     }, [])
@@ -38,7 +35,6 @@ export default function Home() {
             .then(res => res.json())
             .then(data => {
                 setCategorias(data)
-                setErroCategorias('')
             })
             .catch(error => console.error('Erro ao buscar categorias:', error))
     }, [])
