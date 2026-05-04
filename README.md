@@ -1,16 +1,93 @@
-# React + Vite
+# Aurora Market — e-commerce (front-end)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto de loja fictícia em **React**. A ideia é mostrar catálogo, detalhe do produto e carrinho com dados vindos de uma **API fake** (JSON).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## O que o projeto faz (resumo)
 
-## React Compiler
+1. **Home** — hero, benefícios, categorias em destaque e blocos por categoria.
+2. **Produtos** — lista com filtros (busca, categoria, ordenação).
+3. **Produto** — página de um item com preço, estoque e botão para o carrinho.
+4. **Carrinho** — itens salvos no **navegador** (`localStorage`), resumo com validação contra a API e “finalizar” simulado.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Ferramentas usadas e por quê
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Ferramenta | Para que serve | Por que escolhi / uso aqui |
+|------------|----------------|----------------------------|
+| **React** | Interface em componentes | É o padrão do mercado, boa documentação e reaproveitamento de código (cards, navbar, etc.). |
+| **Vite** | Servidor de desenvolvimento e build | Mais rápido que setups antigos; `npm run dev` sobe o site na hora. |
+| **React Router** | Rotas (`/`, `/produtos`, `/produto/:id`, `/carrinho`) | Sem recarregar a página inteira ao navegar; fica parecido com um app real. |
+| **JSON Server** | API REST fake em cima de um `.json` | Não precisa de backend próprio para o TCC/portfólio; dá `GET` em `/produtos` e `/categorias` como uma API de verdade. |
+| **react-icons** | Ícones (carrinho, menu, etc.) | Evita baixar vários SVGs na mão; um pacote só. |
+| **ESLint** | Avisos de código (`npm run lint`) | Ajuda a manter padrão e pegar erro bobo antes de entregar. |
+| **CSS Modules** | Estilo por ficheiro (ex.: `navbar.module.css`) | Nomes de classes não “chocam” entre componentes; é comum em projetos React. |
+
+---
+
+## Como rodar no seu PC
+
+### 1) Instalar dependências
+
+```bash
+npm install
+```
+
+### 2) Subir a API fake (terminal separado)
+
+O front chama `http://localhost:3000`. Use o ficheiro **`dbTeste.json`** na raiz do projeto:
+
+```bash
+npx json-server --watch dbTeste.json --port 3000
+```
+
+> Deixa esse terminal aberto enquanto testas o site.
+
+### 3) Subir o front-end
+
+Em **outro** terminal:
+
+```bash
+npm run dev
+```
+
+Abre o endereço que o Vite mostrar (geralmente `http://localhost:5173`).
+
+---
+
+## Scripts úteis
+
+| Comando | O que faz |
+|---------|-----------|
+| `npm run dev` | Modo desenvolvimento (hot reload). |
+| `npm run build` | Gera pasta `dist` para produção. |
+| `npm run preview` | Testa o build localmente. |
+| `npm run lint` | Roda o ESLint no projeto. |
+
+---
+
+## Estrutura (bem por cima)
+
+```
+src/
+  components/   → peças reutilizáveis (navbar, cards, footer…)
+  pages/         → ecrãs (home, produtos, produto, carrinho)
+  utils/         → lógica do carrinho e validação com a API
+public/
+  assets/        → imagens estáticas (hero, produtos, etc.)
+dbTeste.json     → dados da “API” (categorias + produtos)
+```
+
+---
+
+## Notas honestas (tipo junior)
+
+- Se o **JSON Server** não estiver ligado, listas e carrinho podem falhar ou mostrar erro — é esperado.
+- O **carrinho** não manda pedido para servidor; grava no **localStorage** do browser.
+- Nome da loja e textos são **fictícios** para estudo.
+
+---
+
+**Bons testes.**
