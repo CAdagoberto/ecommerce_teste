@@ -3,7 +3,7 @@ import BlocoCategoria from '../components/blocoCategoria'
 import HeroInicio from '../components/home/heroInicio'
 import BarraBeneficios from '../components/home/barraBeneficios'
 import SecaoDestaques from '../components/home/secaoDestaques'
-import ChamadaAcao from '../components/home/chamadaAcao'
+//import ChamadaAcao from '../components/home/chamadaAcao'
 import { useEffect, useState } from 'react'
 import CardDestaques from '../components/cardDestaques'
 import SkeletonCardDestaque from '../components/home/SkeletonCardDestaque'
@@ -103,7 +103,7 @@ const Home = () => {
                     )}
                 </SecaoDestaques>
 
-                <ChamadaAcao />
+                
 
                 <section className={styles.produtos}>
                     {carregando === true ? (
