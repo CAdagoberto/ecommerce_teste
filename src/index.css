@@ -8,6 +8,8 @@
   --bg-color: #313131;
   --text-color: #fff;
   --espacamento: 80px;
+  /* espaço da navbar fixa nas páginas que não têm hero em tela cheia */
+  --altura-navbar-fixa: max(5.75rem, calc(env(safe-area-inset-top) + 4.5rem));
   --texto-principal: #3d3d3d;
   --texto-suave: #5c5c5c;
   --texto-leve: #737373;
@@ -32,6 +34,10 @@ h3 {
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.3;
+}
+
+.paginaComNav {
+  padding-top: var(--altura-navbar-fixa);
 }
 
 .container {

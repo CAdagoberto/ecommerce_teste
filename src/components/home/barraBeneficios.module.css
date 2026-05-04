@@ -7,8 +7,7 @@
 
 .lista {
     display: flex;
-    gap: 30px;
-    justify-content: center;
+    justify-content: space-around;
     list-style: none;
     margin: 0;
     padding: 0;
