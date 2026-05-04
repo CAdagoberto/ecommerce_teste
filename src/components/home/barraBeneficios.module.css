@@ -1,0 +1,22 @@
+.beneficios {
+    background-color: #eaeaea;
+    border-radius: 50px;
+    padding: 20px;
+    margin-top: var(--espacamento);
+}
+
+.lista {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.item {
+    font-size: 14px;
+    color: #333;
+    text-decoration: underline;
+}

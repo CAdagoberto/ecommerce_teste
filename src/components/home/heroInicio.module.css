@@ -1,0 +1,21 @@
+.sectionHero {
+    border: 1px solid red;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+.heroContent {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.heroContent button {
+    padding: 10px 20px;
+    width: 20%;
+}

@@ -1,0 +1,23 @@
+.destaques {
+    margin-top: var(--espacamento);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.titulo {
+    font-size: 32px;
+    font-weight: 800;
+    color: #333;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+}
+
+.grade {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
