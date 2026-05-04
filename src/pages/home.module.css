@@ -2,6 +2,12 @@
     width: 100%;
 }
 
+.avisoErro {
+    color: #b91c1c;
+    margin: 0 0 12px;
+    font-size: 0.95rem;
+}
+
 .produtos {
     margin-top: var(--espacamento);
     display: flex;

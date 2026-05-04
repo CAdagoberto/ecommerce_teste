@@ -16,6 +16,7 @@
       "etiquetaTamanho": "M",
       "etiquetaVariacao": "PRETO",
       "img": "https://placehold.co/600x400/1a1a1a/ffffff?text=Dry+fit+01",
+      "disponivel": true,
       "estoque": 30
     },
     {
@@ -29,6 +30,7 @@
       "etiquetaTamanho": "G",
       "etiquetaVariacao": "AZUL",
       "img": "https://placehold.co/600x400/1e3a8a/ffffff?text=Dry+fit+02",
+      "disponivel": true,
       "estoque": 22
     },
     {
@@ -42,6 +44,7 @@
       "etiquetaTamanho": "P",
       "etiquetaVariacao": "VERMELHO",
       "img": "https://placehold.co/600x400/b91c1c/ffffff?text=Dry+fit+03",
+      "disponivel": true,
       "estoque": 18
     },
     {
@@ -55,6 +58,7 @@
       "etiquetaTamanho": "GG",
       "etiquetaVariacao": "CINZA",
       "img": "https://placehold.co/600x400/525252/ffffff?text=Dry+fit+04",
+      "disponivel": true,
       "estoque": 14
     },
     {
@@ -68,6 +72,7 @@
       "etiquetaTamanho": "M",
       "etiquetaVariacao": "BRANCO",
       "img": "https://placehold.co/600x400/f5f5f5/333333?text=Dry+fit+05",
+      "disponivel": true,
       "estoque": 26
     },
     {
@@ -81,6 +86,7 @@
       "etiquetaTamanho": "G",
       "etiquetaVariacao": "VERDE",
       "img": "https://placehold.co/600x400/166534/ffffff?text=Dry+fit+06",
+      "disponivel": true,
       "estoque": 32
     },
     {
@@ -94,6 +100,7 @@
       "etiquetaTamanho": "38",
       "etiquetaVariacao": "AZUL MARINHO",
       "img": "https://placehold.co/600x400/1e3a5f/ffffff?text=Dry+fit+07",
+      "disponivel": true,
       "estoque": 19
     },
     {
@@ -107,6 +114,7 @@
       "etiquetaTamanho": "P",
       "etiquetaVariacao": "ROSE",
       "img": "https://placehold.co/600x400/be185d/ffffff?text=Dry+fit+08",
+      "disponivel": true,
       "estoque": 21
     },
     {
@@ -120,6 +128,7 @@
       "etiquetaTamanho": "40",
       "etiquetaVariacao": "BRANCO",
       "img": "https://placehold.co/600x400/f8f8f8/333333?text=Social+01",
+      "disponivel": true,
       "estoque": 15
     },
     {
@@ -133,6 +142,7 @@
       "etiquetaTamanho": "42",
       "etiquetaVariacao": "AZUL MARINHO",
       "img": "https://placehold.co/600x400/1e293b/ffffff?text=Social+02",
+      "disponivel": true,
       "estoque": 18
     },
     {
@@ -146,6 +156,7 @@
       "etiquetaTamanho": "41",
       "etiquetaVariacao": "PRETO",
       "img": "https://placehold.co/600x400/171717/ffffff?text=Social+03",
+      "disponivel": true,
       "estoque": 12
     },
     {
@@ -159,6 +170,7 @@
       "etiquetaTamanho": "39",
       "etiquetaVariacao": "BEGE",
       "img": "https://placehold.co/600x400/d6d3c9/333333?text=Social+04",
+      "disponivel": true,
       "estoque": 10
     },
     {
@@ -172,6 +184,7 @@
       "etiquetaTamanho": "43",
       "etiquetaVariacao": "CINZA",
       "img": "https://placehold.co/600x400/737373/ffffff?text=Social+05",
+      "disponivel": false,
       "estoque": 16
     },
     {
@@ -185,6 +198,7 @@
       "etiquetaTamanho": "44",
       "etiquetaVariacao": "AZUL CLARO",
       "img": "https://placehold.co/600x400/93c5fd/1e293b?text=Social+06",
+      "disponivel": true,
       "estoque": 11
     },
     {
@@ -198,6 +212,7 @@
       "etiquetaTamanho": "40",
       "etiquetaVariacao": "BORDÔ",
       "img": "https://placehold.co/600x400/7f1d1d/ffffff?text=Social+07",
+      "disponivel": false,
       "estoque": 9
     },
     {
@@ -211,6 +226,7 @@
       "etiquetaTamanho": "42",
       "etiquetaVariacao": "BRANCO OFF",
       "img": "https://placehold.co/600x400/e7e5e4/333333?text=Social+08",
+      "disponivel": true,
       "estoque": 20
     },
     {
@@ -224,6 +240,7 @@
       "etiquetaTamanho": "P",
       "etiquetaVariacao": "ROSE",
       "img": "https://placehold.co/600x400/e8b4b8/333333?text=Blusa+01",
+      "disponivel": true,
       "estoque": 24
     },
     {
@@ -237,6 +254,7 @@
       "etiquetaTamanho": "M",
       "etiquetaVariacao": "PRETO",
       "img": "https://placehold.co/600x400/2d2d2d/ffffff?text=Blusa+02",
+      "disponivel": false,
       "estoque": 20
     },
     {
@@ -250,6 +268,7 @@
       "etiquetaTamanho": "G",
       "etiquetaVariacao": "BRANCO",
       "img": "https://placehold.co/600x400/fafafa/333333?text=Blusa+03",
+      "disponivel": true,
       "estoque": 28
     },
     {
@@ -263,6 +282,7 @@
       "etiquetaTamanho": "P",
       "etiquetaVariacao": "VERDE MUSGO",
       "img": "https://placehold.co/600x400/3f6212/ffffff?text=Blusa+04",
+      "disponivel": true,
       "estoque": 15
     },
     {
@@ -276,6 +296,7 @@
       "etiquetaTamanho": "M",
       "etiquetaVariacao": "AZUL MARINHO",
       "img": "https://placehold.co/600x400/312e81/ffffff?text=Blusa+05",
+      "disponivel": false,
       "estoque": 13
     },
     {
@@ -289,6 +310,7 @@
       "etiquetaTamanho": "GG",
       "etiquetaVariacao": "BEGE",
       "img": "https://placehold.co/600x400/d4c4b0/333333?text=Blusa+06",
+      "disponivel": true,
       "estoque": 17
     },
     {
@@ -302,6 +324,7 @@
       "etiquetaTamanho": "38",
       "etiquetaVariacao": "VERMELHO",
       "img": "https://placehold.co/600x400/dc2626/ffffff?text=Blusa+07",
+      "disponivel": false,
       "estoque": 35
     },
     {
@@ -315,6 +338,7 @@
       "etiquetaTamanho": "40",
       "etiquetaVariacao": "PRETO",
       "img": "https://placehold.co/600x400/27272a/ffffff?text=Blusa+08",
+      "disponivel": true,
       "estoque": 8
     }
   ]

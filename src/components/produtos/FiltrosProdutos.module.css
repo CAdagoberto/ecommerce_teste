@@ -1,0 +1,45 @@
+.areaFiltros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+    margin-bottom: 28px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #e5e5e5;
+    margin-top: var(--espacamento);
+}
+
+.campoFiltro {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 160px;
+}
+
+.campoFiltro label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--texto-suave, #5c5c5c);
+}
+
+.campoFiltro input,
+.campoFiltro select {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.campoFiltro input:focus,
+.campoFiltro select:focus {
+    outline: 2px solid #5d5a88;
+    outline-offset: 1px;
+}
+
+.campoBusca {
+    flex: 1;
+    min-width: 200px;
+}

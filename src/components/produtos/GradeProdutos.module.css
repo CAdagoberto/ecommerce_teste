@@ -1,0 +1,16 @@
+.gridProdutos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: var(--espacamento);
+    gap: 24px;
+}
+
+.mensagemVazia {
+    padding: 32px;
+    text-align: center;
+    color: var(--texto-suave, #5c5c5c);
+    background: #fff;
+    border-radius: 10px;
+    width: 100%;
+}

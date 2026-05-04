@@ -62,7 +62,7 @@
 .produtosCategoria {
     display: flex;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: center;
     gap: 20px;
 }
 

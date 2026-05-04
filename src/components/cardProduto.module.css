@@ -1,58 +1,144 @@
 .cardProduto {
-    width: 300px;
-    min-height: 400px;
+    --card-largura: 300px;
+    --card-img-altura: 220px;
+    width: var(--card-largura);
+    min-height: 460px;
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    border-radius: 10px;
-    padding: 16px;
+    border-radius: 14px;
+    padding: 0;
+    border: 1px solid #e8e8e8;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition:
+        box-shadow 0.35s ease,
+        transform 0.35s ease,
+        border-color 0.25s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .cardProduto:hover {
+        transform: translateY(-6px);
+        box-shadow:
+            0 18px 36px rgba(0, 0, 0, 0.1),
+            0 0 0 1px rgba(93, 90, 136, 0.12);
+        border-color: #d4d2e8;
+    }
+
+    .cardProduto:hover .imgProduto img {
+        transform: scale(1.07);
+    }
+
+    .cardProduto:hover .tituloLink {
+        color: #5d5a88;
+    }
+}
+
+.areaMidia {
+    display: block;
+    flex-shrink: 0;
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
+.areaMidia:focus-visible {
+    box-shadow: inset 0 0 0 2px #5d5a88;
 }
 
 .imgProduto {
     width: 100%;
-    height: 200px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    flex-shrink: 0;
+    height: var(--card-img-altura);
+    background: linear-gradient(145deg, #f4f4f4, #eaeaea);
+    overflow: hidden;
 }
 
 .imgProduto img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    transition: transform 0.45s ease;
 }
 
 .corpoCard {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding-top: 14px;
+    gap: 10px;
+    padding: 16px 16px 18px;
     flex: 1;
     min-height: 0;
 }
 
+.linhaTitulo {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
 .titulo {
     margin: 0;
-    font-size: 1.125rem;
+    font-size: 1.0625rem;
     font-weight: 600;
     color: var(--texto-principal, #3d3d3d);
     line-height: 1.35;
     letter-spacing: -0.015em;
+    flex: 1;
+    min-width: 0;
+}
+
+.tituloLink {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.tituloLink:hover {
+    color: #5d5a88;
+}
+
+.tituloLink:focus-visible {
+    outline: 2px solid #5d5a88;
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+.pillEstoque,
+.pillEstoqueOff {
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 8px;
+    border-radius: 999px;
+}
+
+.pillEstoque {
+    color: #166534;
+    background: #dcfce7;
+    border: 1px solid #bbf7d0;
+}
+
+.pillEstoqueOff {
+    color: #991b1b;
+    background: #fee2e2;
+    border: 1px solid #fecaca;
 }
 
 .etiquetas {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
 }
 
 .etiqueta {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    padding: 6px 10px;
+    padding: 5px 9px;
     border: 1px solid #e5e5e5;
     background-color: #fafafa;
     border-radius: 6px;
@@ -61,68 +147,122 @@
 
 .descricao {
     margin: 0;
-    font-size: 0.875rem;
-    line-height: 1.6;
+    font-size: 0.8125rem;
+    line-height: 1.55;
     color: var(--texto-suave, #5c5c5c);
     font-weight: 400;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    flex: 1;
+    min-height: 3.9em;
 }
 
 .rodape {
     display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 12px 16px;
+    flex-direction: column;
+    gap: 12px;
     margin-top: auto;
-    padding-top: 4px;
+    padding-top: 8px;
 }
 
 .blocoPreco {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 4px;
+    gap: 2px;
 }
 
 .rotuloPreco {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--texto-leve, #737373);
 }
 
 .valorPreco {
-    font-size: 1.125rem;
-    font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 700;
     color: var(--texto-principal, #3d3d3d);
     font-variant-numeric: tabular-nums;
     line-height: 1.2;
     letter-spacing: -0.02em;
 }
 
-.botaoAdicionar {
-    padding: 12px 20px;
-    border-radius: 8px;
-    background-color: #404040;
+.botaoDetalhes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #3d3d3d 0%, #2a2a2a 100%);
     color: #fff;
     font-size: 0.8125rem;
-    font-weight: 500;
+    font-weight: 600;
     font-family: inherit;
+    text-decoration: none;
+    border: 1px solid #222;
     cursor: pointer;
-    white-space: nowrap;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    text-transform: none;
-    border: 1px solid #333;
+    transition:
+        background 0.22s ease,
+        color 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
 }
 
-.botaoAdicionar:hover {
-    background-color: #ffffff;
-    color: #333;
-    border-color: #333;
+.botaoDetalhes:hover {
+    background: #fff;
+    color: #2a2a2a;
+    border-color: #2a2a2a;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
-.botaoAdicionar:focus-visible {
+.botaoDetalhes:focus-visible {
     outline: 2px solid #5d5a88;
     outline-offset: 2px;
+}
+
+.linhaBotoes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.botaoCarrinho {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 10px;
+    background: #fff;
+    color: #2a2a2a;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.botaoCarrinho:hover {
+    background: #f5f5f5;
+    border-color: #999;
+}
+
+.botaoCarrinho:focus-visible {
+    outline: 2px solid #5d5a88;
+    outline-offset: 2px;
+}
+
+.botaoCarrinho:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
 }

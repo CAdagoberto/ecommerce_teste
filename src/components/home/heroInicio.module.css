@@ -7,7 +7,7 @@
     /* reserva espaço para a navbar fixa por cima; o fundo do hero vai até o topo da tela */
     padding: 0 100px;
     margin: 0;
-    background-image: url('../../assets/images/banner2.webp');
+    background-image: url();
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -25,11 +25,12 @@
 }
 
 .heroContent h1 {
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
-    font-weight: 600;
+    font-size: 3rem;
+    font-weight: 900;
     color: var(--texto-principal, #3d3d3d);
     line-height: 1.25;
     letter-spacing: -0.03em;
+    text-transform: uppercase;
 }
 
 .heroContent p {
@@ -40,25 +41,36 @@
     max-width: 36ch;
 }
 
-.heroContent button {
-    padding: 10px 20px;
+.heroContent .botaoCta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 45px;
     width: fit-content;
     min-width: 8rem;
     font-family: inherit;
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0.02em;
-    border-radius: 8px;
+    border-radius: 50px;
     cursor: pointer;
-    border: 1px solid #ccc;
-    background: #fff;
-    color: var(--texto-principal, #3d3d3d);
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    border: 1px solid white;
+    background: inherit;
+    color: white;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-.heroContent button:hover {
+.heroContent .botaoCta:hover {
     background: #f5f5f5;
     border-color: #bbb;
+    color: #3d3d3d;
+}
+
+.heroContent .botaoCta:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
 }
 
 @media (max-width: 768px) {
