@@ -84,7 +84,7 @@ const Navbar = () => {
             <div className={styles.barra}>
                 <nav className={styles.nav} aria-label="Principal">
                     <Link to="/" className={styles.logo} onClick={fecharMenu}>
-                        Nome Loja
+                        Aurora Market
                     </Link>
 
                     <div id="menu-links-lateral" className={classPainel}>

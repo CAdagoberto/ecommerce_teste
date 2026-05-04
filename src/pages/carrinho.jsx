@@ -31,6 +31,7 @@ const Carrinho = () => {
     const [produtosApi, setProdutosApi] = useState([])
     const [carregandoCatalogo, setCarregandoCatalogo] = useState(false)
     const [erroApi, setErroApi] = useState('')
+    const [mensagemPedidoFinalizado, setMensagemPedidoFinalizado] = useState('')
 
     const recarregarDoStorage = useCallback(() => {
         setLinhasArmazenadas(obterLinhasCarrinho())
@@ -119,12 +120,66 @@ const Carrinho = () => {
 
     const vazio = linhasArmazenadas.length === 0
 
+    const qtdTiposValidos = resumo.detalhes.filter(d => d.valido === true)
+        .length
+    const podeFinalizarPedido =
+        erroApi === '' &&
+        carregandoCatalogo === false &&
+        resumo.subtotal > 0 &&
+        qtdTiposValidos > 0
+
+    const FinalizarPedido = () => {
+        if (podeFinalizarPedido === false) {
+            return
+        }
+        let totalTexto = formatarPreco(resumo.subtotal)
+        let confirma = window.confirm(
+            `Confirma o pedido no valor de ${totalTexto}?\n\n(Isto é apenas uma simulação — não há pagamento real.)`
+        )
+        if (confirma === false) {
+            return
+        }
+        esvaziarCarrinho()
+        recarregarDoStorage()
+        setMensagemPedidoFinalizado(
+            `Pedido criado com sucesso. Total: ${totalTexto}. Obrigado pela preferência!`
+        )
+    }
+
     return (
         <main className={`container paginaComNav ${styles.pagina}`}>
             <h1 className={styles.titulo}>Carrinho</h1>
             <p className={styles.subtitulo}>
                 Veja o resumo do seu pedido antes de finalizar a compra.
             </p>
+
+            {mensagemPedidoFinalizado !== '' ? (
+                <div
+                    className={styles.pedidoSucesso}
+                    role="status"
+                    aria-live="polite"
+                >
+                    <p className={styles.pedidoSucessoTexto}>
+                        {mensagemPedidoFinalizado}
+                    </p>
+                    <div className={styles.pedidoSucessoAcoes}>
+                        <button
+                            type="button"
+                            className={styles.btnFecharAviso}
+                            onClick={() => setMensagemPedidoFinalizado('')}
+                        >
+                            Fechar aviso
+                        </button>
+                        <Link
+                            to="/produtos"
+                            className={styles.linkAposPedido}
+                            onClick={() => setMensagemPedidoFinalizado('')}
+                        >
+                            Continuar comprando
+                        </Link>
+                    </div>
+                </div>
+            ) : null}
 
             {vazio ? (
                 <div className={styles.vazio}>
@@ -336,13 +391,31 @@ const Carrinho = () => {
                                 </span>
                             </div>
                             <div className={styles.total}>
-                                <span>Resumo do pedido</span>
+                                <span>Total estimado</span>
                                 <span className={styles.totalValor}>
                                     {erroApi !== ''
                                         ? '—'
                                         : formatarPreco(resumo.subtotal)}
                                 </span>
                             </div>
+                            <p className={styles.notaSimulacao}>
+                                Confira o total acima. Ao finalizar, o pedido é
+                                só uma simulação (sem pagamento nem entrega
+                                real).
+                            </p>
+                            <button
+                                type="button"
+                                className={styles.btnFinalizar}
+                                disabled={podeFinalizarPedido === false}
+                                title={
+                                    podeFinalizarPedido === false
+                                        ? 'Valide o carrinho com a API e tenha itens com total maior que zero para finalizar.'
+                                        : undefined
+                                }
+                                onClick={FinalizarPedido}
+                            >
+                                Finalizar pedido
+                            </button>
                             <button
                                 type="button"
                                 className={styles.btnEsvaziar}

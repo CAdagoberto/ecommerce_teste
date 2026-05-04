@@ -159,12 +159,12 @@ const Produto = () => {
 
     useEffect(() => {
         if (produto != null && produto.nome != null) {
-            document.title = `${produto.nome} · Nome Loja`
+            document.title = `${produto.nome} · Aurora Market`
         } else {
-            document.title = 'Produto · Nome Loja'
+            document.title = 'Produto · Aurora Market'
         }
         return () => {
-            document.title = 'Nome Loja'
+            document.title = 'Aurora Market'
         }
     }, [produto])
 

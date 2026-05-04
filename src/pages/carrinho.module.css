@@ -1,9 +1,8 @@
 .pagina {
-    padding-bottom: 3rem;
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: stretch;
+    padding-bottom: 2.5rem;
 }
 
 .titulo {
@@ -62,8 +61,9 @@
         grid-template-columns: 1fr;
     }
 
-    .pagina {
-        padding-top: 120px;
+    .painelResumo {
+        position: static;
+        top: auto;
     }
 }
 
@@ -292,8 +292,34 @@
     color: #2a2a2a;
 }
 
+.btnFinalizar {
+    margin-top: 14px;
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #fff;
+    background: linear-gradient(135deg, #3d3d3d 0%, #2a2a2a 100%);
+    border: 1px solid #222;
+    border-radius: 10px;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.btnFinalizar:hover:not(:disabled) {
+    background: #1a1a1a;
+}
+
+.btnFinalizar:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
 .btnEsvaziar {
-    margin-top: 12px;
+    margin-top: 10px;
     width: 100%;
     padding: 10px;
     font-size: 0.8125rem;
@@ -308,6 +334,64 @@
 
 .btnEsvaziar:hover {
     background: #eee;
+}
+
+.pedidoSucesso {
+    margin-bottom: 24px;
+    padding: 18px 20px;
+    border-radius: 12px;
+    border: 1px solid #bbf7d0;
+    background: #f0fdf4;
+    color: #14532d;
+}
+
+.pedidoSucessoTexto {
+    margin: 0 0 14px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.pedidoSucessoAcoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.btnFecharAviso {
+    padding: 8px 14px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #14532d;
+    background: #fff;
+    border: 1px solid #86efac;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btnFecharAviso:hover {
+    background: #dcfce7;
+}
+
+.linkAposPedido {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border-radius: 8px;
+    background: #166534;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #14532d;
+}
+
+.linkAposPedido:hover {
+    background: #15803d;
+    color: #fff;
 }
 
 @media (max-width: 600px) {
