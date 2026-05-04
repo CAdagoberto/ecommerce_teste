@@ -1,5 +1,6 @@
 import styles from './blocoCategoria.module.css'
 import CardProduto from './cardProduto'
+import { Link } from 'react-router-dom'
 
 const BlocoCategoria = ({
     titulo,
@@ -12,7 +13,7 @@ const BlocoCategoria = ({
             <div className={styles.categoriaTitulo}>
                 <h2>{titulo}</h2>
                 <p>{descricao}</p>
-                <button>{verTodos}</button>
+                <Link to="/produtos" className={styles.linkVerTodos}>{verTodos}</Link>
             </div>
 
             <div className={styles.produtosCategoria}>

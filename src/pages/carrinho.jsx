@@ -380,7 +380,7 @@ const Carrinho = () => {
                         <aside className={styles.painelResumo}>
                             <h2>Resumo do pedido</h2>
                             <div className={styles.linhaResumo}>
-                                <span>Itens válidos</span>
+                                <span>Itens: </span>
                                 <span>
                                     {
                                         resumo.detalhes.filter(
@@ -391,7 +391,7 @@ const Carrinho = () => {
                                 </span>
                             </div>
                             <div className={styles.total}>
-                                <span>Total estimado</span>
+                                <span>Total estimado:</span>
                                 <span className={styles.totalValor}>
                                     {erroApi !== ''
                                         ? '—'
@@ -399,9 +399,7 @@ const Carrinho = () => {
                                 </span>
                             </div>
                             <p className={styles.notaSimulacao}>
-                                Confira o total acima. Ao finalizar, o pedido é
-                                só uma simulação (sem pagamento nem entrega
-                                real).
+                                Confira o total acima. Ao finalizar.
                             </p>
                             <button
                                 type="button"

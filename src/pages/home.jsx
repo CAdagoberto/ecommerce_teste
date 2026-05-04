@@ -88,11 +88,11 @@ const Home = () => {
 
                 <SecaoDestaques>
                     {carregando === true ? (
-                        <>
+                        <div style={{ display: 'flex', gap: '20px' }}>
                             <SkeletonCardDestaque key="sk-cat-0" />
                             <SkeletonCardDestaque key="sk-cat-1" />
                             <SkeletonCardDestaque key="sk-cat-2" />
-                        </>
+                        </div>
                     ) : (
                         categorias.map(categoria => (
                             <CardDestaques
