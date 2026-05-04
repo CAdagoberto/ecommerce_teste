@@ -5,7 +5,6 @@
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    /* reserva espaço para a navbar fixa por cima; o fundo do hero vai até o topo da tela */
     padding: 0 100px;
     margin: 0;
     background-image: url();
@@ -14,11 +13,13 @@
     background-repeat: no-repeat;
 }
 
-/* escurece o lado do texto (gradiente) sem tapar toda a imagem */
 .sectionHero::before {
     content: '';
     position: absolute;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: 0;
     pointer-events: none;
     background: linear-gradient(
@@ -34,7 +35,7 @@
     position: relative;
     z-index: 1;
     width: 50%;
-    max-width: 36rem;
+    max-width: 576px;
     min-height: 0;
     display: flex;
     flex-direction: column;
@@ -44,21 +45,21 @@
 }
 
 .heroContent h1 {
-    font-size: 3rem;
+    font-size: 48px;
     font-weight: 900;
     color: #fff;
     line-height: 1.25;
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
     text-transform: uppercase;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 .heroContent p {
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.65;
     color: rgba(255, 255, 255, 0.9);
-    max-width: 36ch;
+    max-width: 400px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -68,11 +69,11 @@
     justify-content: center;
     padding: 13px 45px;
     width: fit-content;
-    min-width: 8rem;
+    min-width: 128px;
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: 500;
-    letter-spacing: 0.02em;
+    letter-spacing: 0;
     border-radius: 50px;
     cursor: pointer;
     border: 1px solid white;
@@ -111,5 +112,9 @@
             rgba(0, 0, 0, 0.42) 45%,
             rgba(0, 0, 0, 0.22) 100%
         );
+    }
+
+    .heroContent h1 {
+        font-size: 32px;
     }
 }

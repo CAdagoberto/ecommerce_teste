@@ -19,7 +19,7 @@
 }
 
 .campoFiltro label {
-    font-size: 0.8rem;
+    font-size: 13px;
     font-weight: 500;
     color: var(--texto-suave, #5c5c5c);
 }
@@ -30,7 +30,7 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: 14px;
 }
 
 .campoFiltro input:focus,
