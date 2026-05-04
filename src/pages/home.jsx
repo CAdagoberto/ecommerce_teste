@@ -5,13 +5,26 @@ import HeroInicio from '../components/home/heroInicio'
 import BarraBeneficios from '../components/home/barraBeneficios'
 import SecaoDestaques from '../components/home/secaoDestaques'
 import ChamadaAcao from '../components/home/chamadaAcao'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
-    const produtos = [
-        { id: 1, nome: 'Produto 1', preco: 100 },
-        { id: 2, nome: 'Produto 2', preco: 200 },
-        { id: 3, nome: 'Produto 3', preco: 300 },
-    ]
+
+    const [produtos, setProdutos] = useState([])
+    const [categorias, setCategorias] = useState([])
+
+    useEffect(() => {
+        fetch('http://localhost:3000/produtos')
+        .then(response => response.json())
+        .then(data => setProdutos(data))
+        .catch(error => console.error('Erro ao buscar produtos:', error))
+    }, [])
+
+    useEffect(() => {
+        fetch('http://localhost:3000/categorias')
+        .then(response => response.json())
+        .then(data => setCategorias(data))
+        .catch(error => console.error('Erro ao buscar categorias:', error))
+    }, [])
 
     return (
         <div className={styles.home}>
@@ -29,28 +42,15 @@ export default function Home() {
                 <ChamadaAcao />
 
                 <section className={styles.produtos}>
-                    <BlocoCategoria
-                        titulo="Produtos em destaque"
-                        descricao="Descrição dos produtos em destaque"
-                        produtos={produtos}
-                        verTodos="Ver todos"
+                  {categorias.map((categoria) => (
+                    <BlocoCategoria key={categoria.id} {...categoria}
+                    produtos={produtos.filter((produto) => produto.categoriaId === categoria.id)}
+                    titulo={categoria.nome}
+                    descricao={categoria.descricao}
                     />
-
-                    <BlocoCategoria
-                        titulo="Produtos em destaque"
-                        descricao="Descrição dos produtos em destaque"
-                        produtos={produtos}
-                        verTodos="Ver todos"
-                    />
-
-                    <BlocoCategoria
-                        titulo="Produtos em destaque"
-                        descricao="Descrição dos produtos em destaque"
-                        produtos={produtos}
-                        verTodos="Ver todos"
-                    />
+                  ))}
                 </section>
-            </main>
-        </div>
-    )
+      </main>
+    </div>
+  );
 }

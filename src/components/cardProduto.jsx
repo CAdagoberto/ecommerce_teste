@@ -1,22 +1,23 @@
 import styles from './cardProduto.module.css'
 
-export default function CardProduto() {
+export default function CardProduto({nome, descricao, valor, etiquetas = [], img, estoque}) {
     return (
         <article className={styles.cardProduto}>
-            <div className={styles.imgProduto} aria-hidden />
+            <div className={styles.imgProduto} aria-hidden>
+                <img src={img} alt={nome} />
+            </div>
             <div className={styles.corpoCard}>
-                <h3 className={styles.titulo}>Nike Running Shoe</h3>
+                <h3 className={styles.titulo}>{nome}</h3>
                 <div className={styles.etiquetas}>
-                    <span className={styles.etiqueta}>EU38</span>
-                    <span className={styles.etiqueta}>BLACK/WHITE</span>
+                    {etiquetas.map((etiqueta) => (
+                        <span className={styles.etiqueta} key={etiqueta.id}>{etiqueta.nome}</span>
+                    ))}
                 </div>
-                <p className={styles.descricao}>
-                recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
+                <p className={styles.descricao}>{descricao}</p>
                 <div className={styles.rodape}>
                     <div className={styles.blocoPreco}>
                         <span className={styles.rotuloPreco}>Preço</span>
-                        <span className={styles.valorPreco}>R$69.99</span>
+                        <span className={styles.valorPreco}>R${valor}</span>
                     </div>
                     <button type="button" className={styles.botaoAdicionar}>
                        Adicionar ao carrinho

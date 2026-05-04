@@ -1,12 +1,12 @@
 import styles from './blocoCategoria.module.css'
 import CardProduto from './cardProduto'
 
-export default function BlocoCategoria({ titulo, descricao, produtos, verTodos }) {
+export default function BlocoCategoria({ titulo, descricao, produtos, verTodos = 'Ver todos' }) {
     return (
         <>
             <div className={styles.categoria}>
                            <div className={styles.categoriaTitulo}>
-                                <h3>{titulo}</h3>
+                                <h2>{titulo}</h2>
                                 <p>{descricao}</p>
                                 <button>{verTodos}</button> 
                            </div>

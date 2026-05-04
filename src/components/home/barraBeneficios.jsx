@@ -1,10 +1,10 @@
 import styles from './barraBeneficios.module.css'
 
 const ITENS_PADRAO = [
-    '15% OFF NA PRIMEIRA COMPRA',
-    'FRETE GRÁTIS ACIMA DE R$200',
-    'PARCELE EM ATÉ 6X SEM JUROS',
-    'DEVOLUÇÃO GRÁTIS EM 15 DIAS',
+    '15% na primeira compra',
+    'Frete grátis acima de R$ 200',
+    'Parcele em até 6x sem juros',
+    'Devolução grátis em 15 dias',
 ]
 
 export default function BarraBeneficios({ itens = ITENS_PADRAO }) {
