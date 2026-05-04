@@ -58,7 +58,7 @@ export default function Navbar() {
             <div className={styles.barra}>
                 <nav className={styles.nav} aria-label="Principal">
                     <Link to="/" className={styles.logo} onClick={fecharMenu}>
-                        Loja
+                        Nome Loja
                     </Link>
 
                     <div id="menu-links-lateral" className={classPainel}>

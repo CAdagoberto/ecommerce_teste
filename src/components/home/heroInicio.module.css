@@ -5,9 +5,12 @@
     align-items: center;
     box-sizing: border-box;
     /* reserva espaço para a navbar fixa por cima; o fundo do hero vai até o topo da tela */
-    padding-top: var(--altura-navbar-fixa);
+    padding: 0 100px;
     margin: 0;
-    background-color: #ebebeb;
+    background-image: url('../../assets/images/banner2.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .heroContent {
@@ -62,5 +65,9 @@
     .heroContent {
         width: 100%;
         max-width: none;
+    }
+
+    .sectionHero  {
+        padding: 0 16px;
     }
 }
