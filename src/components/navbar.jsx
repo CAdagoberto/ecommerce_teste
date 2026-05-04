@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { FaBars, FaShoppingCart, FaTimes } from 'react-icons/fa'
+import { FaBars, FaShoppingCart } from 'react-icons/fa'
 import styles from './navbar.module.css'
 import {
     contarUnidadesNoCarrinho,
@@ -15,40 +15,9 @@ const linksDoMenu = [
 ]
 
 const Navbar = () => {
-    const [menuAberto, setMenuAberto] = useState(false)
-    const [qtdCarrinho, setQtdCarrinho] = useState(contarUnidadesNoCarrinho)
-
-    const abrirFecharMenu = () => {
-        if (menuAberto === true) {
-            setMenuAberto(false)
-        } else {
-            setMenuAberto(true)
-        }
-    }
-
-    const fecharMenu = () => {
-        setMenuAberto(false)
-    }
-
-    useEffect(() => {
-        if (menuAberto === false) {
-            return
-        }
-
-        const quandoApertarTecla = evento => {
-            if (evento.key === 'Escape') {
-                setMenuAberto(false)
-            }
-        }
-
-        document.addEventListener('keydown', quandoApertarTecla)
-        document.body.style.overflow = 'hidden'
-
-        return () => {
-            document.removeEventListener('keydown', quandoApertarTecla)
-            document.body.style.overflow = ''
-        }
-    }, [menuAberto])
+    const [qtdCarrinho, setQtdCarrinho] = useState(() =>
+        contarUnidadesNoCarrinho()
+    )
 
     useEffect(() => {
         const atualizarContagem = () => {
@@ -74,26 +43,20 @@ const Navbar = () => {
         }
     }, [])
 
-    let classPainel = styles.painelLinks
-    if (menuAberto === true) {
-        classPainel = `${classPainel} ${styles.painelLinksAberto}`
-    }
-
     return (
         <header className={styles.cabecalho}>
             <div className={styles.barra}>
                 <nav className={styles.nav} aria-label="Principal">
-                    <Link to="/" className={styles.logo} onClick={fecharMenu}>
+                    <Link to="/" className={styles.logo}>
                         Aurora Market
                     </Link>
 
-                    <div id="menu-links-lateral" className={classPainel}>
+                    <div className={styles.painelLinks}>
                         {linksDoMenu.map(item => (
                             <NavLink
                                 key={item.to}
                                 to={item.to}
                                 end={item.to === '/'}
-                                onClick={fecharMenu}
                                 className={props => {
                                     if (props.isActive === true) {
                                         return `${styles.navLink} ${styles.navLinkAtivo}`
@@ -115,7 +78,6 @@ const Navbar = () => {
                                     ? `Ver carrinho, ${qtdCarrinho} itens`
                                     : 'Ver carrinho'
                             }
-                            onClick={fecharMenu}
                         >
                             <FaShoppingCart
                                 className={styles.iconeNav}
@@ -129,44 +91,19 @@ const Navbar = () => {
                             ) : null}
                         </Link>
 
-                        <button
-                            type="button"
-                            className={styles.botaoMenu}
-                            aria-expanded={menuAberto}
-                            aria-controls="menu-links-lateral"
-                            aria-label={
-                                menuAberto === true
-                                    ? 'Fechar menu'
-                                    : 'Abrir menu'
-                            }
-                            onClick={abrirFecharMenu}
+                        <span
+                            className={styles.iconeMenuDecorativo}
+                            aria-hidden="true"
                         >
-                            {menuAberto === true ? (
-                                <FaTimes
-                                    className={styles.iconeNav}
-                                    size={22}
-                                    aria-hidden="true"
-                                />
-                            ) : (
-                                <FaBars
-                                    className={styles.iconeNav}
-                                    size={22}
-                                    aria-hidden="true"
-                                />
-                            )}
-                        </button>
+                            <FaBars
+                                className={styles.iconeNav}
+                                size={22}
+                                aria-hidden="true"
+                            />
+                        </span>
                     </div>
                 </nav>
             </div>
-
-            {menuAberto === true ? (
-                <button
-                    type="button"
-                    className={styles.fundoMenu}
-                    aria-label="Fechar menu"
-                    onClick={fecharMenu}
-                />
-            ) : null}
         </header>
     )
 }
