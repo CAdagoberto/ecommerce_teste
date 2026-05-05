@@ -57,17 +57,6 @@ Abre o endereço que o Vite mostrar (geralmente `http://localhost:5173`).
 
 ---
 
-## Scripts úteis
-
-| Comando | O que faz |
-|---------|-----------|
-| `npm run dev` | Modo desenvolvimento (hot reload). |
-| `npm run build` | Gera pasta `dist` para produção. |
-| `npm run preview` | Testa o build localmente. |
-| `npm run lint` | Roda o ESLint no projeto. |
-
----
-
 ## Estrutura (bem por cima)
 
 ```
@@ -82,7 +71,7 @@ dbTeste.json     → dados da “API” (categorias + produtos)
 
 ---
 
-## Notas honestas (tipo junior)
+## Notas 
 
 - Se o **JSON Server** não estiver ligado, listas e carrinho podem falhar ou mostrar erro — é esperado.
 - O **carrinho** não manda pedido para servidor; grava no **localStorage** do browser.
