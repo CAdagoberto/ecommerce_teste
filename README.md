@@ -22,7 +22,6 @@ Projeto de loja fictícia em **React**. A ideia é mostrar catálogo, detalhe do
 | **React Router** | Rotas (`/`, `/produtos`, `/produto/:id`, `/carrinho`) |
 | **JSON Server** | API REST fake em cima de um `.json` |
 | **react-icons** | Ícones (carrinho, menu, etc.) |
-| **ESLint** | Avisos de código (`npm run lint`) |
 | **CSS Modules** | Estilo por ficheiro (ex.: `navbar.module.css`) |
 
 ---
