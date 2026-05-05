@@ -1,4 +1,4 @@
-# Aurora Market — e-commerce (front-end)
+# Aurora Market — e-commerce
 
 Projeto de loja fictícia em **React**. A ideia é mostrar catálogo, detalhe do produto e carrinho com dados vindos de uma **API fake** (JSON).
 
@@ -13,7 +13,7 @@ Projeto de loja fictícia em **React**. A ideia é mostrar catálogo, detalhe do
 
 ---
 
-## Ferramentas usadas e por quê
+## Ferramentas usadas
 
 | Ferramenta | Para que serve | Por que escolhi / uso aqui |
 |------------|----------------|----------------------------|
@@ -44,7 +44,7 @@ dbTeste.json     → dados da “API” (categorias + produtos)
 
 ## Notas 
 
-- Se o **JSON Server** não estiver ligado, listas e carrinho podem falhar ou mostrar erro — é esperado.
+- Se o **JSON Server** não estiver ligado, listas e carrinho podem falhar ou mostrar erro.
 - O **carrinho** não manda pedido para servidor; grava no **localStorage** do browser.
 - Nome da loja e textos são **fictícios** para estudo.
 
