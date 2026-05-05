@@ -45,7 +45,7 @@ dbTeste.json     → dados da “API” (categorias + produtos)
 
 - Se o **JSON Server** não estiver ligado, listas e carrinho podem falhar ou mostrar erro.
 - O **carrinho** não manda pedido para servidor; grava no **localStorage** do browser.
-- Nome da loja e textos são **fictícios** para estudo.
+- Nome da loja e textos são **fictícios** para o teste.
 
 ---
 
