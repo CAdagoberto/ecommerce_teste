@@ -15,15 +15,15 @@ Projeto de loja fictícia em **React**. A ideia é mostrar catálogo, detalhe do
 
 ## Ferramentas usadas
 
-| Ferramenta | Para que serve | Por que escolhi / uso aqui |
-|------------|----------------|----------------------------|
-| **React** | Interface em componentes | É o padrão do mercado, boa documentação e reaproveitamento de código (cards, navbar, etc.). |
-| **Vite** | Servidor de desenvolvimento e build | Mais rápido que setups antigos; `npm run dev` sobe o site na hora. |
-| **React Router** | Rotas (`/`, `/produtos`, `/produto/:id`, `/carrinho`) | Sem recarregar a página inteira ao navegar; fica parecido com um app real. |
-| **JSON Server** | API REST fake em cima de um `.json` | Não precisa de backend próprio para o TCC/portfólio; dá `GET` em `/produtos` e `/categorias` como uma API de verdade. |
-| **react-icons** | Ícones (carrinho, menu, etc.) | Evita baixar vários SVGs na mão; um pacote só. |
-| **ESLint** | Avisos de código (`npm run lint`) | Ajuda a manter padrão e pegar erro bobo antes de entregar. |
-| **CSS Modules** | Estilo por ficheiro (ex.: `navbar.module.css`) | Nomes de classes não “chocam” entre componentes; é comum em projetos React. |
+| Ferramenta | Para que serve |
+|------------|----------------|
+| **React** | Interface em componentes |
+| **Vite** | Servidor de desenvolvimento e build |
+| **React Router** | Rotas (`/`, `/produtos`, `/produto/:id`, `/carrinho`) |
+| **JSON Server** | API REST fake em cima de um `.json` |
+| **react-icons** | Ícones (carrinho, menu, etc.) |
+| **ESLint** | Avisos de código (`npm run lint`) |
+| **CSS Modules** | Estilo por ficheiro (ex.: `navbar.module.css`) |
 
 ---
 
