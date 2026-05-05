@@ -27,37 +27,8 @@ Projeto de loja fictícia em **React**. A ideia é mostrar catálogo, detalhe do
 
 ---
 
-## Como rodar no seu PC
 
-### 1) Instalar dependências
-
-```bash
-npm install
-```
-
-### 2) Subir a API fake (terminal separado)
-
-O front chama `http://localhost:3000`. Use o ficheiro **`dbTeste.json`** na raiz do projeto:
-
-```bash
-npx json-server --watch dbTeste.json --port 3000
-```
-
-> Deixa esse terminal aberto enquanto testas o site.
-
-### 3) Subir o front-end
-
-Em **outro** terminal:
-
-```bash
-npm run dev
-```
-
-Abre o endereço que o Vite mostrar (geralmente `http://localhost:5173`).
-
----
-
-## Estrutura (bem por cima)
+## Estrutura
 
 ```
 src/
